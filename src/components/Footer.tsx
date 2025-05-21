@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <div className="text-lg font-bold text-white font-display">
-              ARCH<span className="text-gray-500">STUDIO</span>
+              MATTHEW <span className="text-gray-500">CHEN</span>
             </div>
             <p className="mt-2 text-sm">Architecture as a journey: exploring, evolving, creating.</p>
           </div>
@@ -35,7 +35,7 @@ const Footer = () => {
         </div>
         
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm">
-          © {currentYear} Architecture Portfolio. All rights reserved.
+          © {currentYear} Matthew Chen. All rights reserved.
         </div>
       </div>
     </footer>
