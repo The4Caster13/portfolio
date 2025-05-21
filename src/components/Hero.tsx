@@ -40,26 +40,29 @@ const Hero = () => {
         <span className="text-xs uppercase tracking-widest mb-2 animate-bounce">Scroll</span>
         <div className="flex flex-col items-center">
           <div className="w-px h-5 bg-white/60 animate-[pulse_2s_infinite]"></div>
-          <div className="w-0.5 h-0 bg-white/80 animate-[scrollDown_1.5s_ease-in-out_infinite]" style={{
-            animation: 'scrollDown 1.5s ease-in-out infinite',
-          }}></div>
-          <style jsx>{`
-            @keyframes scrollDown {
-              0% {
-                height: 0;
-                opacity: 0;
+          <div className="w-0.5 h-0 bg-white/80 scroll-down-animation"></div>
+          <style dangerouslySetInnerHTML={{
+            __html: `
+              @keyframes scrollDown {
+                0% {
+                  height: 0;
+                  opacity: 0;
+                }
+                30% {
+                  height: 8px;
+                  opacity: 1;
+                }
+                100% {
+                  height: 0;
+                  opacity: 0;
+                  transform: translateY(20px);
+                }
               }
-              30% {
-                height: 8px;
-                opacity: 1;
+              .scroll-down-animation {
+                animation: scrollDown 1.5s ease-in-out infinite;
               }
-              100% {
-                height: 0;
-                opacity: 0;
-                transform: translateY(20px);
-              }
-            }
-          `}</style>
+            `
+          }}></style>
         </div>
       </div>
     </section>
