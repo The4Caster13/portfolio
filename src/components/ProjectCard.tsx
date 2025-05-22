@@ -1,5 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 interface ProjectCardProps {
   image: string;
@@ -68,10 +69,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
         <h3 className="text-2xl md:text-3xl font-bold mb-4">{title}</h3>
         <p className="text-gray-600">{description}</p>
-        <a href="#" className="mt-6 text-sm font-medium uppercase tracking-wide flex items-center group">
+        <Link to={`/project/${index}`} className="mt-6 text-sm font-medium uppercase tracking-wide flex items-center group">
           View Project
           <span className="ml-2 w-5 h-px bg-gray-900 transform transition-all group-hover:w-8"></span>
-        </a>
+        </Link>
       </div>
     </div>
   );

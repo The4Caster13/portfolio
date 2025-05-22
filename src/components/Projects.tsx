@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import ProjectCard from './ProjectCard';
 
-const projectsData = [
+export const projectsData = [
   {
     image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
     title: "Urban Residence",
