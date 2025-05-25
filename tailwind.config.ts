@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -24,6 +23,15 @@ export default {
 				display: ['Playfair Display', 'serif'],
 			},
 			colors: {
+				// Custom nature-inspired color scheme
+				'forest-green': '#2E7D32',
+				'sage': '#A8C3A0',
+				'terra-cotta': '#E27D60',
+				'sky-blue': '#7EC8E3',
+				'charcoal': '#333333',
+				'off-white': '#F4F4F4',
+				
+				// Original shadcn colors
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
