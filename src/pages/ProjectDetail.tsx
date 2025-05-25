@@ -85,10 +85,10 @@ const ProjectDetail = () => {
             Back to projects
           </button>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            {/* Project image */}
-            <div className="relative">
-              <div className="aspect-[4/3] overflow-hidden bg-off-white shadow-2xl rounded-lg border border-sage/20">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            {/* Project image - now takes up 2/3 of the width */}
+            <div className="lg:col-span-2">
+              <div className="aspect-[16/10] overflow-hidden bg-off-white shadow-2xl rounded-lg border border-sage/20">
                 <img 
                   src={project.image} 
                   alt={project.title}
@@ -99,37 +99,37 @@ const ProjectDetail = () => {
               </div>
             </div>
             
-            {/* Project details */}
-            <div className="bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
+            {/* Project details - now takes up 1/3 of the width */}
+            <div className="lg:col-span-1 bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
               <div className="border-b border-sage pb-2 mb-6">
                 <span className="text-sm text-charcoal/70">{project.year} | {project.location}</span>
               </div>
-              <h1 className="text-3xl md:text-4xl font-bold mb-6 text-forest-green">{project.title}</h1>
-              <p className="text-charcoal/80 text-lg mb-8">{project.description}</p>
+              <h1 className="text-2xl md:text-3xl font-bold mb-6 text-forest-green">{project.title}</h1>
+              <p className="text-charcoal/80 text-base mb-8">{project.description}</p>
               
               {/* Additional project details */}
               <div className="space-y-6">
                 <div>
-                  <h3 className="text-xl font-semibold mb-2 text-forest-green">Project Details</h3>
-                  <p className="text-charcoal/70">This {project.title.toLowerCase()} project showcases our commitment to blending form and function. The design emphasizes natural light, sustainable materials, and harmonious integration with the surrounding environment.</p>
+                  <h3 className="text-lg font-semibold mb-2 text-forest-green">Project Details</h3>
+                  <p className="text-charcoal/70 text-sm">This {project.title.toLowerCase()} project showcases our commitment to blending form and function. The design emphasizes natural light, sustainable materials, and harmonious integration with the surrounding environment.</p>
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-sage/10 p-4 rounded-lg">
-                    <h4 className="font-medium text-forest-green">Client</h4>
-                    <p className="text-charcoal/70">Private</p>
+                <div className="grid grid-cols-1 gap-3">
+                  <div className="bg-sage/10 p-3 rounded-lg">
+                    <h4 className="font-medium text-forest-green text-sm">Client</h4>
+                    <p className="text-charcoal/70 text-sm">Private</p>
                   </div>
-                  <div className="bg-sage/10 p-4 rounded-lg">
-                    <h4 className="font-medium text-forest-green">Size</h4>
-                    <p className="text-charcoal/70">3,200 sq ft</p>
+                  <div className="bg-sage/10 p-3 rounded-lg">
+                    <h4 className="font-medium text-forest-green text-sm">Size</h4>
+                    <p className="text-charcoal/70 text-sm">3,200 sq ft</p>
                   </div>
-                  <div className="bg-terra-cotta/10 p-4 rounded-lg">
-                    <h4 className="font-medium text-forest-green">Duration</h4>
-                    <p className="text-charcoal/70">18 months</p>
+                  <div className="bg-terra-cotta/10 p-3 rounded-lg">
+                    <h4 className="font-medium text-forest-green text-sm">Duration</h4>
+                    <p className="text-charcoal/70 text-sm">18 months</p>
                   </div>
-                  <div className="bg-sky-blue/10 p-4 rounded-lg">
-                    <h4 className="font-medium text-forest-green">Services</h4>
-                    <p className="text-charcoal/70">Architecture, Interior Design</p>
+                  <div className="bg-sky-blue/10 p-3 rounded-lg">
+                    <h4 className="font-medium text-forest-green text-sm">Services</h4>
+                    <p className="text-charcoal/70 text-sm">Architecture, Interior Design</p>
                   </div>
                 </div>
               </div>
