@@ -1,3 +1,4 @@
+
 import React, { useRef, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -27,6 +28,38 @@ const ProjectDetail = () => {
     { id: 1, x: 25, y: 30, label: "Exterior Detail", description: "Modern facade with sustainable materials" },
     { id: 2, x: 65, y: 45, label: "Window Design", description: "Energy-efficient glazing system" },
     { id: 3, x: 45, y: 70, label: "Landscaping", description: "Native plant integration" },
+  ];
+
+  // Progression stages data
+  const progressionStages = [
+    {
+      stage: "Sketch",
+      title: "Initial Concept",
+      description: "Hand-drawn sketches exploring form and spatial relationships",
+      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=400&auto=format&fit=crop",
+      icon: "✏️"
+    },
+    {
+      stage: "CAD",
+      title: "Technical Drawing",
+      description: "Precise computer-aided design with measurements and specifications",
+      image: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?q=80&w=400&auto=format&fit=crop",
+      icon: "📐"
+    },
+    {
+      stage: "Render",
+      title: "3D Visualization",
+      description: "Photorealistic rendering showing materials and lighting",
+      image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?q=80&w=400&auto=format&fit=crop",
+      icon: "🎨"
+    },
+    {
+      stage: "Real Photo",
+      title: "Built Reality",
+      description: "The final constructed project in its environment",
+      image: project.image,
+      icon: "📸"
+    }
   ];
 
   const handlePointClick = (pointId: number) => {
@@ -174,8 +207,52 @@ const ProjectDetail = () => {
               </div>
             )}
           </div>
+
+          {/* Design Progression Section */}
+          <div className="mb-12">
+            <div className="bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
+              <h3 className="text-2xl font-bold mb-6 text-forest-green">Design Progression</h3>
+              <p className="text-charcoal/70 mb-8">Follow the evolution of this project from initial concept to built reality</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {progressionStages.map((stage, index) => (
+                  <div key={stage.stage} className="relative">
+                    {/* Connection line */}
+                    {index < progressionStages.length - 1 && (
+                      <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-sage z-10">
+                        <div className="absolute right-0 top-1/2 transform translate-x-1 -translate-y-1/2 w-2 h-2 bg-sage rounded-full"></div>
+                      </div>
+                    )}
+                    
+                    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                      <div className="aspect-square relative overflow-hidden">
+                        <img 
+                          src={stage.image} 
+                          alt={stage.title}
+                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                        />
+                        <div className="absolute top-3 left-3 w-8 h-8 bg-forest-green/90 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                          {index + 1}
+                        </div>
+                        <div className="absolute bottom-3 right-3 text-2xl bg-white/90 rounded-full w-10 h-10 flex items-center justify-center">
+                          {stage.icon}
+                        </div>
+                      </div>
+                      <div className="p-4">
+                        <div className="text-xs font-semibold text-forest-green uppercase tracking-wide mb-1">
+                          {stage.stage}
+                        </div>
+                        <h4 className="font-bold text-charcoal mb-2">{stage.title}</h4>
+                        <p className="text-charcoal/60 text-sm">{stage.description}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
           
-          {/* Project details moved below the image */}
+          {/* Project details moved below the progression */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
               <div className="border-b border-sage pb-2 mb-6">
