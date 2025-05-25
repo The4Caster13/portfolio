@@ -9,6 +9,9 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
   const [selectedZoom, setSelectedZoom] = useState<number | null>(null);
   const [selectedStage, setSelectedStage] = useState<number | null>(null);
+  const [isDragging, setIsDragging] = useState<number | null>(null);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const imageRef = useRef<HTMLDivElement>(null);
   
   // Find the project based on the id
   const projectIndex = Number(id);
@@ -23,12 +26,12 @@ const ProjectDetail = () => {
   
   if (!project) return null;
 
-  // Interactive points for different areas of the image
-  const interactivePoints = [
+  // Interactive points for different areas of the image - now with draggable positions
+  const [interactivePoints, setInteractivePoints] = useState([
     { id: 1, x: 25, y: 30, label: "Exterior Detail", description: "Modern facade with sustainable materials" },
     { id: 2, x: 65, y: 45, label: "Window Design", description: "Energy-efficient glazing system" },
     { id: 3, x: 45, y: 70, label: "Landscaping", description: "Native plant integration" },
-  ];
+  ]);
 
   // Progression stages data
   const progressionStages = [
@@ -87,9 +90,67 @@ const ProjectDetail = () => {
   ];
 
   const handlePointClick = (pointId: number) => {
+    if (isDragging === pointId) return; // Don't toggle zoom if we're dragging
     console.log('Point clicked:', pointId);
     setSelectedZoom(selectedZoom === pointId ? null : pointId);
   };
+
+  const handleMouseDown = (e: React.MouseEvent, pointId: number) => {
+    e.preventDefault();
+    setIsDragging(pointId);
+    
+    const rect = imageRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    
+    const point = interactivePoints.find(p => p.id === pointId);
+    if (!point) return;
+    
+    const pointX = (point.x / 100) * rect.width + rect.left;
+    const pointY = (point.y / 100) * rect.height + rect.top;
+    
+    setDragOffset({
+      x: e.clientX - pointX,
+      y: e.clientY - pointY
+    });
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (isDragging === null) return;
+    
+    const rect = imageRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    
+    const newX = ((e.clientX - dragOffset.x - rect.left) / rect.width) * 100;
+    const newY = ((e.clientY - dragOffset.y - rect.top) / rect.height) * 100;
+    
+    // Constrain to image bounds
+    const constrainedX = Math.max(5, Math.min(95, newX));
+    const constrainedY = Math.max(5, Math.min(95, newY));
+    
+    setInteractivePoints(prev => 
+      prev.map(point => 
+        point.id === isDragging 
+          ? { ...point, x: constrainedX, y: constrainedY }
+          : point
+      )
+    );
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(null);
+  };
+
+  useEffect(() => {
+    if (isDragging !== null) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDragging, dragOffset]);
 
   const handleStageClick = (stageIndex: number) => {
     console.log('Stage clicked:', stageIndex);
@@ -159,69 +220,68 @@ const ProjectDetail = () => {
             Back to projects
           </button>
           
-          {/* Large project image with interactive points */}
+          {/* Large project image with interactive magnifying glass points */}
           <div className="mb-12">
-            <div className="relative aspect-[21/9] overflow-hidden bg-off-white shadow-2xl rounded-lg border border-sage/20">
+            <div 
+              ref={imageRef}
+              className="relative aspect-[21/9] overflow-hidden bg-off-white shadow-2xl rounded-lg border border-sage/20"
+            >
               <img 
                 src={project.image} 
                 alt={project.title}
-                className={`w-full h-full object-cover transition-all duration-700 ease-in-out ${
-                  selectedZoom ? 'scale-150' : 'scale-100'
-                }`}
-                style={{
-                  transformOrigin: selectedZoom 
-                    ? `${interactivePoints.find(p => p.id === selectedZoom)?.x}% ${interactivePoints.find(p => p.id === selectedZoom)?.y}%`
-                    : 'center'
-                }}
+                className="w-full h-full object-cover"
+                style={{ pointerEvents: 'none' }}
               />
               
-              {/* Interactive points - now translucent with expanding magnifying glass */}
+              {/* Interactive magnifying glass points */}
               {interactivePoints.map((point) => (
-                <button
+                <div
                   key={point.id}
-                  onClick={() => handlePointClick(point.id)}
-                  className="absolute transition-all duration-300 hover:scale-110 z-20"
+                  className={`absolute transition-all duration-300 z-20 ${
+                    isDragging === point.id ? 'cursor-grabbing' : 'cursor-grab'
+                  }`}
                   style={{ 
                     left: `${point.x}%`, 
                     top: `${point.y}%`, 
                     transform: 'translate(-50%, -50%)' 
                   }}
+                  onMouseDown={(e) => handleMouseDown(e, point.id)}
+                  onClick={() => handlePointClick(point.id)}
                 >
-                  {/* Translucent point that expands into magnifying glass */}
-                  <div className={`relative transition-all duration-500 ease-in-out ${
-                    selectedZoom === point.id 
-                      ? 'w-24 h-24' 
-                      : 'w-4 h-4'
-                  }`}>
-                    {selectedZoom === point.id ? (
-                      /* Expanded magnifying glass circle */
-                      <div className="w-full h-full bg-white/90 rounded-full border-3 border-forest-green shadow-xl flex items-center justify-center animate-scale-in">
-                        <svg 
-                          className="w-8 h-8 text-forest-green" 
-                          fill="none" 
-                          stroke="currentColor" 
-                          viewBox="0 0 24 24"
-                        >
-                          <circle cx="11" cy="11" r="8"></circle>
-                          <path d="m21 21-4.35-4.35"></path>
-                        </svg>
-                      </div>
-                    ) : (
-                      /* Translucent point */
-                      <div className="w-full h-full bg-white/40 backdrop-blur-sm rounded-full border-2 border-white/60 shadow-lg hover:bg-white/60 transition-all duration-300">
-                        <div className="w-full h-full rounded-full bg-forest-green/20 hover:bg-forest-green/30 transition-all duration-300"></div>
-                      </div>
-                    )}
-                  </div>
+                  {selectedZoom === point.id ? (
+                    /* Magnifying glass with transparent center showing zoomed content */
+                    <div className="relative w-32 h-32">
+                      {/* Magnified background */}
+                      <div 
+                        className="absolute inset-0 rounded-full overflow-hidden border-4 border-forest-green shadow-2xl"
+                        style={{
+                          background: `url(${project.image})`,
+                          backgroundSize: '300%', // 3x zoom
+                          backgroundPosition: `${point.x}% ${point.y}%`,
+                          backgroundRepeat: 'no-repeat'
+                        }}
+                      />
+                      {/* Magnifying glass rim */}
+                      <div className="absolute inset-0 rounded-full border-4 border-forest-green bg-transparent"></div>
+                      {/* Handle */}
+                      <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-forest-green rounded-full shadow-lg"></div>
+                      <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-white rounded-full"></div>
+                    </div>
+                  ) : (
+                    /* Translucent point */
+                    <div className="w-6 h-6 bg-white/50 backdrop-blur-sm rounded-full border-2 border-white/80 shadow-lg hover:bg-white/70 hover:scale-110 transition-all duration-300">
+                      <div className="w-full h-full rounded-full bg-forest-green/30 hover:bg-forest-green/40 transition-all duration-300"></div>
+                    </div>
+                  )}
                   
-                  {/* Tooltip - only show when not expanded */}
-                  {selectedZoom !== point.id && (
-                    <div className="absolute top-8 left-1/2 transform -translate-x-1/2 opacity-0 hover:opacity-100 transition-opacity duration-200 bg-charcoal text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap z-30 pointer-events-none">
+                  {/* Tooltip - only show when not expanded and not dragging */}
+                  {selectedZoom !== point.id && isDragging !== point.id && (
+                    <div className="absolute top-10 left-1/2 transform -translate-x-1/2 opacity-0 hover:opacity-100 transition-opacity duration-200 bg-charcoal text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap z-30 pointer-events-none">
                       {point.label}
                       <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-charcoal rotate-45"></div>
                     </div>
                   )}
-                </button>
+                </div>
               ))}
               
               {/* Gradient overlay */}
@@ -260,7 +320,6 @@ const ProjectDetail = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {progressionStages.map((stage, index) => (
                   <div key={stage.stage} className="relative">
-                    {/* Connection line */}
                     {index < progressionStages.length - 1 && (
                       <div className="hidden lg:block absolute top-1/2 -right-3 w-6 h-px bg-sage z-10">
                         <div className="absolute right-0 top-1/2 transform translate-x-1 -translate-y-1/2 w-2 h-2 bg-sage rounded-full"></div>
