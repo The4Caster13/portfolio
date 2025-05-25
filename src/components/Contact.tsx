@@ -132,7 +132,7 @@ const Contact = () => {
             </div>
             <div>
               <h3 className="text-lg font-medium mb-2">Studio Location</h3>
-              <p className="text-gray-400">Brooklyn, NY 11201</p>
+              <p className="text-gray-400">Toronto, ON</p>
             </div>
           </div>
         </div>

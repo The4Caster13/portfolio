@@ -57,7 +57,7 @@ const About = () => {
               />
               <div className="absolute -bottom-5 -right-5 bg-white p-6 shadow-lg max-w-xs">
                 <h3 className="font-display text-xl mb-2">Education</h3>
-                <p className="text-sm text-gray-600">Master of Architecture<br/>Harvard Graduate School of Design<br/>2018-2022</p>
+                <p className="text-sm text-gray-600">St. Robert CHS<br/>2022-2026</p>
               </div>
             </div>
           </div>
