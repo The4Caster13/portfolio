@@ -1,5 +1,5 @@
 
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,6 +8,7 @@ import { projectsData } from '@/components/Projects';
 const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const [selectedZoom, setSelectedZoom] = useState<number | null>(null);
   
   // Find the project based on the id
   const projectIndex = Number(id);
@@ -21,6 +22,17 @@ const ProjectDetail = () => {
   }, [project, navigate]);
   
   if (!project) return null;
+
+  // Interactive points for different areas of the image
+  const interactivePoints = [
+    { id: 1, x: 25, y: 30, label: "Exterior Detail", description: "Modern facade with sustainable materials" },
+    { id: 2, x: 65, y: 45, label: "Window Design", description: "Energy-efficient glazing system" },
+    { id: 3, x: 45, y: 70, label: "Landscaping", description: "Native plant integration" },
+  ];
+
+  const handlePointClick = (pointId: number) => {
+    setSelectedZoom(selectedZoom === pointId ? null : pointId);
+  };
   
   return (
     <>
@@ -85,52 +97,94 @@ const ProjectDetail = () => {
             Back to projects
           </button>
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Project image - now takes up 2/3 of the width */}
-            <div className="lg:col-span-2">
-              <div className="aspect-[16/10] overflow-hidden bg-off-white shadow-2xl rounded-lg border border-sage/20">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover"
-                />
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-forest-green/10 via-transparent to-sky-blue/10"></div>
-              </div>
+          {/* Large project image with interactive points */}
+          <div className="mb-12">
+            <div className="relative aspect-[21/9] overflow-hidden bg-off-white shadow-2xl rounded-lg border border-sage/20">
+              <img 
+                src={project.image} 
+                alt={project.title}
+                className={`w-full h-full object-cover transition-transform duration-500 ${
+                  selectedZoom ? 'scale-150' : 'scale-100'
+                }`}
+                style={{
+                  transformOrigin: selectedZoom 
+                    ? `${interactivePoints.find(p => p.id === selectedZoom)?.x}% ${interactivePoints.find(p => p.id === selectedZoom)?.y}%`
+                    : 'center'
+                }}
+              />
+              
+              {/* Interactive points */}
+              {interactivePoints.map((point) => (
+                <button
+                  key={point.id}
+                  onClick={() => handlePointClick(point.id)}
+                  className={`absolute w-6 h-6 rounded-full border-2 border-white shadow-lg transition-all duration-300 hover:scale-125 ${
+                    selectedZoom === point.id 
+                      ? 'bg-forest-green scale-125' 
+                      : 'bg-terra-cotta hover:bg-forest-green'
+                  }`}
+                  style={{ left: `${point.x}%`, top: `${point.y}%`, transform: 'translate(-50%, -50%)' }}
+                >
+                  <span className="sr-only">{point.label}</span>
+                  <div className="absolute top-8 left-1/2 transform -translate-x-1/2 opacity-0 hover:opacity-100 transition-opacity duration-200 bg-charcoal text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10">
+                    {point.label}
+                  </div>
+                </button>
+              ))}
+              
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-tr from-forest-green/10 via-transparent to-sky-blue/10"></div>
             </div>
             
-            {/* Project details - now takes up 1/3 of the width */}
-            <div className="lg:col-span-1 bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
+            {/* Zoom info */}
+            {selectedZoom && (
+              <div className="mt-4 p-4 bg-off-white/90 backdrop-blur-sm rounded-lg border border-sage/20">
+                <h4 className="font-semibold text-forest-green mb-1">
+                  {interactivePoints.find(p => p.id === selectedZoom)?.label}
+                </h4>
+                <p className="text-charcoal/70 text-sm">
+                  {interactivePoints.find(p => p.id === selectedZoom)?.description}
+                </p>
+                <button
+                  onClick={() => setSelectedZoom(null)}
+                  className="mt-2 text-xs text-terra-cotta hover:text-forest-green transition-colors"
+                >
+                  Close zoom
+                </button>
+              </div>
+            )}
+          </div>
+          
+          {/* Project details moved below the image */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <div className="bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
               <div className="border-b border-sage pb-2 mb-6">
                 <span className="text-sm text-charcoal/70">{project.year} | {project.location}</span>
               </div>
-              <h1 className="text-2xl md:text-3xl font-bold mb-6 text-forest-green">{project.title}</h1>
-              <p className="text-charcoal/80 text-base mb-8">{project.description}</p>
+              <h1 className="text-3xl md:text-4xl font-bold mb-6 text-forest-green">{project.title}</h1>
+              <p className="text-charcoal/80 text-lg mb-8">{project.description}</p>
+            </div>
+            
+            <div className="bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
+              <h3 className="text-xl font-semibold mb-4 text-forest-green">Project Details</h3>
+              <p className="text-charcoal/70 mb-6">This {project.title.toLowerCase()} project showcases our commitment to blending form and function. The design emphasizes natural light, sustainable materials, and harmonious integration with the surrounding environment.</p>
               
-              {/* Additional project details */}
-              <div className="space-y-6">
-                <div>
-                  <h3 className="text-lg font-semibold mb-2 text-forest-green">Project Details</h3>
-                  <p className="text-charcoal/70 text-sm">This {project.title.toLowerCase()} project showcases our commitment to blending form and function. The design emphasizes natural light, sustainable materials, and harmonious integration with the surrounding environment.</p>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-sage/10 p-4 rounded-lg">
+                  <h4 className="font-medium text-forest-green">Client</h4>
+                  <p className="text-charcoal/70">Private</p>
                 </div>
-                
-                <div className="grid grid-cols-1 gap-3">
-                  <div className="bg-sage/10 p-3 rounded-lg">
-                    <h4 className="font-medium text-forest-green text-sm">Client</h4>
-                    <p className="text-charcoal/70 text-sm">Private</p>
-                  </div>
-                  <div className="bg-sage/10 p-3 rounded-lg">
-                    <h4 className="font-medium text-forest-green text-sm">Size</h4>
-                    <p className="text-charcoal/70 text-sm">3,200 sq ft</p>
-                  </div>
-                  <div className="bg-terra-cotta/10 p-3 rounded-lg">
-                    <h4 className="font-medium text-forest-green text-sm">Duration</h4>
-                    <p className="text-charcoal/70 text-sm">18 months</p>
-                  </div>
-                  <div className="bg-sky-blue/10 p-3 rounded-lg">
-                    <h4 className="font-medium text-forest-green text-sm">Services</h4>
-                    <p className="text-charcoal/70 text-sm">Architecture, Interior Design</p>
-                  </div>
+                <div className="bg-sage/10 p-4 rounded-lg">
+                  <h4 className="font-medium text-forest-green">Size</h4>
+                  <p className="text-charcoal/70">3,200 sq ft</p>
+                </div>
+                <div className="bg-terra-cotta/10 p-4 rounded-lg">
+                  <h4 className="font-medium text-forest-green">Duration</h4>
+                  <p className="text-charcoal/70">18 months</p>
+                </div>
+                <div className="bg-sky-blue/10 p-4 rounded-lg">
+                  <h4 className="font-medium text-forest-green">Services</h4>
+                  <p className="text-charcoal/70">Architecture, Interior Design</p>
                 </div>
               </div>
             </div>
