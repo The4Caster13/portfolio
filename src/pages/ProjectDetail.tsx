@@ -271,15 +271,6 @@ const ProjectDetail = () => {
                         <div className="absolute bottom-3 right-3 text-2xl bg-white/90 rounded-full w-10 h-10 flex items-center justify-center">
                           {stage.icon}
                         </div>
-                        {selectedStage === index && (
-                          <div className="absolute inset-0 bg-forest-green/20 flex items-center justify-center">
-                            <div className="bg-white/90 rounded-full p-2">
-                              <svg className="w-6 h-6 text-forest-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                              </svg>
-                            </div>
-                          </div>
-                        )}
                       </div>
                       <div className="p-4 text-left">
                         <div className="text-xs font-semibold text-forest-green uppercase tracking-wide mb-1">
