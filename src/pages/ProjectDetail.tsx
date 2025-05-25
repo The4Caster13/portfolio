@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -9,6 +8,7 @@ const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [selectedZoom, setSelectedZoom] = useState<number | null>(null);
+  const [selectedStage, setSelectedStage] = useState<number | null>(null);
   
   // Find the project based on the id
   const projectIndex = Number(id);
@@ -37,34 +37,63 @@ const ProjectDetail = () => {
       title: "Initial Concept",
       description: "Hand-drawn sketches exploring form and spatial relationships",
       image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=400&auto=format&fit=crop",
-      icon: "✏️"
+      icon: "✏️",
+      details: {
+        process: "The design journey begins with freehand sketches that capture the initial vision and spatial concepts. These early drawings explore the relationship between form, function, and site context.",
+        tools: ["Pencil and paper", "Concept sketching", "Site analysis", "Program development"],
+        timeline: "Week 1-2",
+        deliverables: ["Concept sketches", "Site analysis diagrams", "Spatial relationship studies", "Initial design intent"]
+      }
     },
     {
       stage: "CAD",
       title: "Technical Drawing",
       description: "Precise computer-aided design with measurements and specifications",
       image: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?q=80&w=400&auto=format&fit=crop",
-      icon: "📐"
+      icon: "📐",
+      details: {
+        process: "Converting conceptual sketches into precise technical drawings using CAD software. This phase focuses on accurate dimensions, structural elements, and building systems integration.",
+        tools: ["AutoCAD", "Revit", "Technical drawing standards", "Building codes compliance"],
+        timeline: "Week 3-8",
+        deliverables: ["Floor plans", "Elevations", "Sections", "Construction details", "Technical specifications"]
+      }
     },
     {
       stage: "Render",
       title: "3D Visualization",
       description: "Photorealistic rendering showing materials and lighting",
       image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?q=80&w=400&auto=format&fit=crop",
-      icon: "🎨"
+      icon: "🎨",
+      details: {
+        process: "Creating photorealistic 3D visualizations that help clients understand the final design. This phase includes material selection, lighting studies, and atmospheric rendering.",
+        tools: ["3ds Max", "V-Ray", "Lumion", "Material libraries", "Lighting simulation"],
+        timeline: "Week 9-12",
+        deliverables: ["3D renderings", "Material boards", "Lighting studies", "Virtual walkthroughs", "Design presentations"]
+      }
     },
     {
       stage: "Real Photo",
       title: "Built Reality",
       description: "The final constructed project in its environment",
       image: project.image,
-      icon: "📸"
+      icon: "📸",
+      details: {
+        process: "The culmination of the design process - the actual constructed building. This phase involves construction administration, quality control, and final documentation of the completed project.",
+        tools: ["Construction management", "Quality control", "Site supervision", "Professional photography"],
+        timeline: "Month 4-18",
+        deliverables: ["Completed building", "As-built drawings", "Project photography", "Performance evaluation", "Client handover"]
+      }
     }
   ];
 
   const handlePointClick = (pointId: number) => {
     console.log('Point clicked:', pointId);
     setSelectedZoom(selectedZoom === pointId ? null : pointId);
+  };
+
+  const handleStageClick = (stageIndex: number) => {
+    console.log('Stage clicked:', stageIndex);
+    setSelectedStage(selectedStage === stageIndex ? null : stageIndex);
   };
   
   return (
@@ -224,12 +253,17 @@ const ProjectDetail = () => {
                       </div>
                     )}
                     
-                    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <button
+                      onClick={() => handleStageClick(index)}
+                      className={`w-full bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 ${
+                        selectedStage === index ? 'ring-2 ring-forest-green shadow-xl scale-105' : ''
+                      }`}
+                    >
                       <div className="aspect-square relative overflow-hidden">
                         <img 
                           src={stage.image} 
                           alt={stage.title}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                          className="w-full h-full object-cover"
                         />
                         <div className="absolute top-3 left-3 w-8 h-8 bg-forest-green/90 rounded-full flex items-center justify-center text-white font-bold text-sm">
                           {index + 1}
@@ -237,18 +271,81 @@ const ProjectDetail = () => {
                         <div className="absolute bottom-3 right-3 text-2xl bg-white/90 rounded-full w-10 h-10 flex items-center justify-center">
                           {stage.icon}
                         </div>
+                        {selectedStage === index && (
+                          <div className="absolute inset-0 bg-forest-green/20 flex items-center justify-center">
+                            <div className="bg-white/90 rounded-full p-2">
+                              <svg className="w-6 h-6 text-forest-green" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                              </svg>
+                            </div>
+                          </div>
+                        )}
                       </div>
-                      <div className="p-4">
+                      <div className="p-4 text-left">
                         <div className="text-xs font-semibold text-forest-green uppercase tracking-wide mb-1">
                           {stage.stage}
                         </div>
                         <h4 className="font-bold text-charcoal mb-2">{stage.title}</h4>
                         <p className="text-charcoal/60 text-sm">{stage.description}</p>
                       </div>
-                    </div>
+                    </button>
                   </div>
                 ))}
               </div>
+
+              {/* Stage Details */}
+              {selectedStage !== null && (
+                <div className="mt-8 p-6 bg-white/90 backdrop-blur-sm rounded-lg border border-sage/20 shadow-lg animate-fade-in">
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center gap-3">
+                      <div className="text-3xl">{progressionStages[selectedStage].icon}</div>
+                      <div>
+                        <h4 className="text-xl font-bold text-forest-green">
+                          {progressionStages[selectedStage].title}
+                        </h4>
+                        <div className="text-sm text-charcoal/70 uppercase tracking-wide">
+                          {progressionStages[selectedStage].stage} • {progressionStages[selectedStage].details.timeline}
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() => setSelectedStage(null)}
+                      className="text-terra-cotta hover:text-forest-green transition-colors p-2"
+                    >
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                  
+                  <p className="text-charcoal/80 mb-6">{progressionStages[selectedStage].details.process}</p>
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                      <h5 className="font-semibold text-forest-green mb-3">Tools & Methods</h5>
+                      <ul className="space-y-2">
+                        {progressionStages[selectedStage].details.tools.map((tool, idx) => (
+                          <li key={idx} className="flex items-center gap-2 text-charcoal/70">
+                            <div className="w-2 h-2 bg-sage rounded-full"></div>
+                            {tool}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div>
+                      <h5 className="font-semibold text-forest-green mb-3">Key Deliverables</h5>
+                      <ul className="space-y-2">
+                        {progressionStages[selectedStage].details.deliverables.map((deliverable, idx) => (
+                          <li key={idx} className="flex items-center gap-2 text-charcoal/70">
+                            <div className="w-2 h-2 bg-terra-cotta rounded-full"></div>
+                            {deliverable}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </div>
           
