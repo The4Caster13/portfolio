@@ -31,6 +31,7 @@ const ProjectDetail = () => {
   ];
 
   const handlePointClick = (pointId: number) => {
+    console.log('Point clicked:', pointId);
     setSelectedZoom(selectedZoom === pointId ? null : pointId);
   };
   
@@ -103,7 +104,7 @@ const ProjectDetail = () => {
               <img 
                 src={project.image} 
                 alt={project.title}
-                className={`w-full h-full object-cover transition-transform duration-500 ${
+                className={`w-full h-full object-cover transition-all duration-700 ease-in-out ${
                   selectedZoom ? 'scale-150' : 'scale-100'
                 }`}
                 style={{
@@ -118,39 +119,59 @@ const ProjectDetail = () => {
                 <button
                   key={point.id}
                   onClick={() => handlePointClick(point.id)}
-                  className={`absolute w-6 h-6 rounded-full border-2 border-white shadow-lg transition-all duration-300 hover:scale-125 ${
+                  className={`absolute w-8 h-8 rounded-full border-3 border-white shadow-xl transition-all duration-300 hover:scale-125 z-20 ${
                     selectedZoom === point.id 
-                      ? 'bg-forest-green scale-125' 
+                      ? 'bg-forest-green scale-125 animate-pulse' 
                       : 'bg-terra-cotta hover:bg-forest-green'
                   }`}
-                  style={{ left: `${point.x}%`, top: `${point.y}%`, transform: 'translate(-50%, -50%)' }}
+                  style={{ 
+                    left: `${point.x}%`, 
+                    top: `${point.y}%`, 
+                    transform: 'translate(-50%, -50%)' 
+                  }}
                 >
-                  <span className="sr-only">{point.label}</span>
-                  <div className="absolute top-8 left-1/2 transform -translate-x-1/2 opacity-0 hover:opacity-100 transition-opacity duration-200 bg-charcoal text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10">
+                  {/* Magnifying glass icon */}
+                  <svg 
+                    className="w-4 h-4 text-white mx-auto" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                  </svg>
+                  
+                  {/* Tooltip */}
+                  <div className="absolute top-10 left-1/2 transform -translate-x-1/2 opacity-0 hover:opacity-100 transition-opacity duration-200 bg-charcoal text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap z-30 pointer-events-none">
                     {point.label}
+                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-charcoal rotate-45"></div>
                   </div>
                 </button>
               ))}
               
               {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-forest-green/10 via-transparent to-sky-blue/10"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-forest-green/10 via-transparent to-sky-blue/10 pointer-events-none"></div>
             </div>
             
             {/* Zoom info */}
             {selectedZoom && (
-              <div className="mt-4 p-4 bg-off-white/90 backdrop-blur-sm rounded-lg border border-sage/20">
-                <h4 className="font-semibold text-forest-green mb-1">
-                  {interactivePoints.find(p => p.id === selectedZoom)?.label}
-                </h4>
-                <p className="text-charcoal/70 text-sm">
+              <div className="mt-6 p-6 bg-off-white/90 backdrop-blur-sm rounded-lg border border-sage/20 shadow-lg">
+                <div className="flex items-center justify-between mb-3">
+                  <h4 className="font-semibold text-forest-green text-lg">
+                    {interactivePoints.find(p => p.id === selectedZoom)?.label}
+                  </h4>
+                  <button
+                    onClick={() => setSelectedZoom(null)}
+                    className="text-terra-cotta hover:text-forest-green transition-colors p-1"
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+                <p className="text-charcoal/70">
                   {interactivePoints.find(p => p.id === selectedZoom)?.description}
                 </p>
-                <button
-                  onClick={() => setSelectedZoom(null)}
-                  className="mt-2 text-xs text-terra-cotta hover:text-forest-green transition-colors"
-                >
-                  Close zoom
-                </button>
               </div>
             )}
           </div>
