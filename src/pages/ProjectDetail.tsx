@@ -1,4 +1,3 @@
-
 import React, { useRef, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
@@ -121,7 +120,7 @@ const ProjectDetail = () => {
                   onClick={() => handlePointClick(point.id)}
                   className={`absolute w-8 h-8 rounded-full border-3 border-white shadow-xl transition-all duration-300 hover:scale-125 z-20 ${
                     selectedZoom === point.id 
-                      ? 'bg-forest-green scale-125 animate-pulse' 
+                      ? 'bg-forest-green scale-125' 
                       : 'bg-sage hover:bg-forest-green'
                   }`}
                   style={{ 
