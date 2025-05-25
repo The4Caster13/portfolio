@@ -122,7 +122,7 @@ const ProjectDetail = () => {
                   className={`absolute w-8 h-8 rounded-full border-3 border-white shadow-xl transition-all duration-300 hover:scale-125 z-20 ${
                     selectedZoom === point.id 
                       ? 'bg-forest-green scale-125 animate-pulse' 
-                      : 'bg-terra-cotta hover:bg-forest-green'
+                      : 'bg-sage hover:bg-forest-green'
                   }`}
                   style={{ 
                     left: `${point.x}%`, 
