@@ -175,38 +175,52 @@ const ProjectDetail = () => {
                 }}
               />
               
-              {/* Interactive points */}
+              {/* Interactive points - now translucent with expanding magnifying glass */}
               {interactivePoints.map((point) => (
                 <button
                   key={point.id}
                   onClick={() => handlePointClick(point.id)}
-                  className={`absolute w-8 h-8 rounded-full border-3 border-white shadow-xl transition-all duration-300 hover:scale-125 z-20 ${
-                    selectedZoom === point.id 
-                      ? 'bg-forest-green scale-125' 
-                      : 'bg-sage hover:bg-forest-green'
-                  }`}
+                  className="absolute transition-all duration-300 hover:scale-110 z-20"
                   style={{ 
                     left: `${point.x}%`, 
                     top: `${point.y}%`, 
                     transform: 'translate(-50%, -50%)' 
                   }}
                 >
-                  {/* Magnifying glass icon */}
-                  <svg 
-                    className="w-4 h-4 text-white mx-auto" 
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24"
-                  >
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                  </svg>
-                  
-                  {/* Tooltip */}
-                  <div className="absolute top-10 left-1/2 transform -translate-x-1/2 opacity-0 hover:opacity-100 transition-opacity duration-200 bg-charcoal text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap z-30 pointer-events-none">
-                    {point.label}
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-charcoal rotate-45"></div>
+                  {/* Translucent point that expands into magnifying glass */}
+                  <div className={`relative transition-all duration-500 ease-in-out ${
+                    selectedZoom === point.id 
+                      ? 'w-24 h-24' 
+                      : 'w-4 h-4'
+                  }`}>
+                    {selectedZoom === point.id ? (
+                      /* Expanded magnifying glass circle */
+                      <div className="w-full h-full bg-white/90 rounded-full border-3 border-forest-green shadow-xl flex items-center justify-center animate-scale-in">
+                        <svg 
+                          className="w-8 h-8 text-forest-green" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                      </div>
+                    ) : (
+                      /* Translucent point */
+                      <div className="w-full h-full bg-white/40 backdrop-blur-sm rounded-full border-2 border-white/60 shadow-lg hover:bg-white/60 transition-all duration-300">
+                        <div className="w-full h-full rounded-full bg-forest-green/20 hover:bg-forest-green/30 transition-all duration-300"></div>
+                      </div>
+                    )}
                   </div>
+                  
+                  {/* Tooltip - only show when not expanded */}
+                  {selectedZoom !== point.id && (
+                    <div className="absolute top-8 left-1/2 transform -translate-x-1/2 opacity-0 hover:opacity-100 transition-opacity duration-200 bg-charcoal text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap z-30 pointer-events-none">
+                      {point.label}
+                      <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-charcoal rotate-45"></div>
+                    </div>
+                  )}
                 </button>
               ))}
               
