@@ -1,10 +1,13 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // Detect scroll to change navbar style
   useEffect(() => {
@@ -15,12 +18,26 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle scroll to section
+  // Handle scroll to section or navigate to home then scroll
   const scrollToSection = (sectionId: string) => {
     setMenuOpen(false);
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+    
+    // If we're not on the homepage, navigate there first
+    if (location.pathname !== '/') {
+      navigate('/');
+      // Use setTimeout to ensure navigation completes before scrolling
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      // We're already on homepage, just scroll
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -33,9 +50,12 @@ const Navbar = () => {
     >
       <div className="container flex justify-between items-center">
         <div className="flex items-center">
-          <a href="#" className="text-xl md:text-2xl font-bold font-display tracking-tight">
+          <button 
+            onClick={() => navigate('/')} 
+            className="text-xl md:text-2xl font-bold font-display tracking-tight hover:text-gray-600 transition-colors"
+          >
             MATTHEW <span className="text-gray-400">CHEN</span>
-          </a>
+          </button>
         </div>
 
         {/* Mobile menu button */}
