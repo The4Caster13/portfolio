@@ -1,9 +1,12 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { projectsData } from "@/components/Projects";
 
 const RecentWork = () => {
+  const navigate = useNavigate();
+  
   useEffect(() => {
     document.title = "Recent Work - Matthew Chen";
   }, []);
@@ -33,6 +36,7 @@ const RecentWork = () => {
             {masonryItems.map((item, index) => (
               <div
                 key={index}
+                onClick={() => navigate(`/photo/${index}`)}
                 className={`group relative overflow-hidden rounded-2xl ${item.gridClass} cursor-pointer transition-transform duration-300 hover:scale-[1.02]`}
               >
                 <img
