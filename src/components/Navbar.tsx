@@ -71,6 +71,7 @@ const Navbar = () => {
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex space-x-8 text-sm font-medium">
+          <button onClick={() => navigate('/recent-work')} className="hover:text-gray-600 transition-colors">Recent Work</button>
           <button onClick={() => scrollToSection('projects')} className="hover:text-gray-600 transition-colors">Projects</button>
           <button onClick={() => scrollToSection('about')} className="hover:text-gray-600 transition-colors">About</button>
           <button onClick={() => scrollToSection('philosophy')} className="hover:text-gray-600 transition-colors">Philosophy</button>
@@ -80,6 +81,7 @@ const Navbar = () => {
         {/* Mobile navigation overlay */}
         <div className={`md:hidden fixed inset-0 bg-white transition-opacity duration-300 ${menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <div className="flex flex-col items-center justify-center h-full space-y-8 text-lg font-medium">
+            <button onClick={() => { navigate('/recent-work'); setMenuOpen(false); }} className="hover:text-gray-600 transition-colors">Recent Work</button>
             <button onClick={() => scrollToSection('projects')} className="hover:text-gray-600 transition-colors">Projects</button>
             <button onClick={() => scrollToSection('about')} className="hover:text-gray-600 transition-colors">About</button>
             <button onClick={() => scrollToSection('philosophy')} className="hover:text-gray-600 transition-colors">Philosophy</button>
