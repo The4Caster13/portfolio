@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { projectsData } from "@/components/Projects";
+import { recentWorkData } from "@/data/recentWorkData";
 
 const RecentWork = () => {
   const navigate = useNavigate();
@@ -13,12 +13,12 @@ const RecentWork = () => {
 
   // Create a masonry-style grid layout
   const masonryItems = [
-    { ...projectsData[0], gridClass: "md:col-span-1 md:row-span-1" },
-    { ...projectsData[1], gridClass: "md:col-span-1 md:row-span-2" },
-    { ...projectsData[2], gridClass: "md:col-span-1 md:row-span-1" },
-    { ...projectsData[0], gridClass: "md:col-span-1 md:row-span-2" },
-    { ...projectsData[1], gridClass: "md:col-span-1 md:row-span-1" },
-    { ...projectsData[2], gridClass: "md:col-span-1 md:row-span-2" },
+    { ...recentWorkData[0], gridClass: "md:col-span-1 md:row-span-1" },
+    { ...recentWorkData[1], gridClass: "md:col-span-1 md:row-span-2" },
+    { ...recentWorkData[2], gridClass: "md:col-span-1 md:row-span-1" },
+    { ...recentWorkData[3], gridClass: "md:col-span-1 md:row-span-2" },
+    { ...recentWorkData[4], gridClass: "md:col-span-1 md:row-span-1" },
+    { ...recentWorkData[5], gridClass: "md:col-span-1 md:row-span-2" },
   ];
 
   return (
@@ -36,7 +36,7 @@ const RecentWork = () => {
             {masonryItems.map((item, index) => (
               <div
                 key={index}
-                onClick={() => navigate(`/photo/${index}`)}
+                onClick={() => navigate(`/recent-work/${index}`)}
                 className={`group relative overflow-hidden rounded-2xl ${item.gridClass} cursor-pointer transition-transform duration-300 hover:scale-[1.02]`}
               >
                 <img
