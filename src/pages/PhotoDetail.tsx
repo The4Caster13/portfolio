@@ -3,6 +3,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { projectsData } from "@/components/Projects";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const PhotoDetail = () => {
   const { id } = useParams();
@@ -25,26 +32,38 @@ const PhotoDetail = () => {
           </p>
         </div>
 
-        {/* Hero Image Section */}
-        <div className="relative w-full h-[80vh] overflow-hidden">
-          <img
-            src={photo.image}
-            alt={photo.title}
-            className="w-full h-full object-cover"
-          />
-          
-          {/* Overlay Text */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-            <p className="text-sm md:text-base font-light tracking-widest mb-4 opacity-90">
-              {photo.description.split('.')[0]}
-            </p>
-            <h1 className="text-4xl md:text-6xl font-display tracking-wider uppercase">
-              {photo.title}
-            </h1>
-          </div>
+        {/* Hero Image Carousel Section */}
+        <div className="relative w-full h-[80vh]">
+          <Carousel className="w-full h-full">
+            <CarouselContent className="h-[80vh]">
+              {projectsData.map((project, index) => (
+                <CarouselItem key={index} className="relative h-full">
+                  <div className="relative w-full h-full overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                    
+                    {/* Overlay Text */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+                      <p className="text-sm md:text-base font-light tracking-widest mb-4 opacity-90">
+                        {project.description.split('.')[0]}
+                      </p>
+                      <h1 className="text-4xl md:text-6xl font-display tracking-wider uppercase">
+                        {project.title}
+                      </h1>
+                    </div>
 
-          {/* Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40 pointer-events-none" />
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40 pointer-events-none" />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-4 bg-white/10 border-white/20 text-white hover:bg-white/20" />
+            <CarouselNext className="right-4 bg-white/10 border-white/20 text-white hover:bg-white/20" />
+          </Carousel>
         </div>
 
         {/* Content Section */}
