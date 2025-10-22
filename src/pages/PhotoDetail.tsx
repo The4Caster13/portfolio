@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,17 +9,30 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 
 const PhotoDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const photoIndex = parseInt(id || "0");
-  const photo = projectsData[photoIndex % projectsData.length];
+  const [api, setApi] = useState<CarouselApi>();
+  const [currentIndex, setCurrentIndex] = useState(photoIndex);
+  const photo = projectsData[currentIndex % projectsData.length];
 
   useEffect(() => {
     document.title = `${photo.title} - Matthew Chen`;
   }, [photo.title]);
+
+  useEffect(() => {
+    if (api) {
+      api.scrollTo(photoIndex, true);
+      
+      api.on("select", () => {
+        setCurrentIndex(api.selectedScrollSnap());
+      });
+    }
+  }, [api, photoIndex]);
 
   return (
     <>
@@ -34,7 +47,7 @@ const PhotoDetail = () => {
 
         {/* Hero Image Carousel Section */}
         <div className="relative w-full h-[80vh]">
-          <Carousel className="w-full h-full">
+          <Carousel className="w-full h-full" setApi={setApi}>
             <CarouselContent className="h-[80vh]">
               {projectsData.map((project, index) => (
                 <CarouselItem key={index} className="relative h-full">
