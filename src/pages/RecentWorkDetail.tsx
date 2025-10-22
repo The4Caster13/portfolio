@@ -17,23 +17,11 @@ const RecentWorkDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const photoIndex = parseInt(id || "0");
-  const [api, setApi] = useState<CarouselApi>();
-  const [currentIndex, setCurrentIndex] = useState(photoIndex);
-  const photo = recentWorkData[currentIndex % recentWorkData.length];
+  const photo = recentWorkData[photoIndex % recentWorkData.length];
 
   useEffect(() => {
     document.title = `${photo.title} - Matthew Chen`;
   }, [photo.title]);
-
-  useEffect(() => {
-    if (api) {
-      api.scrollTo(photoIndex, true);
-      
-      api.on("select", () => {
-        setCurrentIndex(api.selectedScrollSnap());
-      });
-    }
-  }, [api, photoIndex]);
 
   return (
     <>
@@ -48,24 +36,26 @@ const RecentWorkDetail = () => {
 
         {/* Hero Image Carousel Section */}
         <div className="relative w-full h-[80vh]">
-          <Carousel className="w-full h-full" setApi={setApi}>
+          <Carousel className="w-full h-full">
             <CarouselContent className="h-[80vh]">
-              {recentWorkData.map((project, index) => (
+              {photo.images.map((image, index) => (
                 <CarouselItem key={index} className="relative h-full">
                   <img
-                    src={project.image}
-                    alt={project.title}
+                    src={image}
+                    alt={`${photo.title} - View ${index + 1}`}
                     className="w-full h-full object-cover"
                   />
-                  {/* Overlay text */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
-                    <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-                      {project.title}
-                    </h1>
-                    <p className="text-lg md:text-xl text-white/90 max-w-3xl">
-                      {project.description.split('.')[0]}.
-                    </p>
-                  </div>
+                  {/* Overlay text on first image only */}
+                  {index === 0 && (
+                    <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                      <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                        {photo.title}
+                      </h1>
+                      <p className="text-lg md:text-xl text-white/90 max-w-3xl">
+                        {photo.description.split('.')[0]}.
+                      </p>
+                    </div>
+                  )}
                 </CarouselItem>
               ))}
             </CarouselContent>

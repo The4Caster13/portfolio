@@ -16,23 +16,11 @@ const PhotoDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const photoIndex = parseInt(id || "0");
-  const [api, setApi] = useState<CarouselApi>();
-  const [currentIndex, setCurrentIndex] = useState(photoIndex);
-  const photo = projectsData[currentIndex % projectsData.length];
+  const photo = projectsData[photoIndex % projectsData.length];
 
   useEffect(() => {
     document.title = `${photo.title} - Matthew Chen`;
   }, [photo.title]);
-
-  useEffect(() => {
-    if (api) {
-      api.scrollTo(photoIndex, true);
-      
-      api.on("select", () => {
-        setCurrentIndex(api.selectedScrollSnap());
-      });
-    }
-  }, [api, photoIndex]);
 
   return (
     <>
@@ -41,73 +29,67 @@ const PhotoDetail = () => {
         {/* Header with date */}
         <div className="container px-6 md:px-12 pt-32 pb-8">
           <p className="text-sm text-muted-foreground">
-            {photo.year} • {photo.location}
+            {photo.location} • {photo.year}
           </p>
         </div>
 
         {/* Hero Image Carousel Section */}
         <div className="relative w-full h-[80vh]">
-          <Carousel className="w-full h-full" setApi={setApi}>
+          <Carousel className="w-full h-full">
             <CarouselContent className="h-[80vh]">
-              {projectsData.map((project, index) => (
+              {photo.images.map((image, index) => (
                 <CarouselItem key={index} className="relative h-full">
-                  <div className="relative w-full h-full overflow-hidden">
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                    />
-                    
-                    {/* Overlay Text */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
-                      <p className="text-sm md:text-base font-light tracking-widest mb-4 opacity-90">
-                        {project.description.split('.')[0]}
-                      </p>
-                      <h1 className="text-4xl md:text-6xl font-display tracking-wider uppercase">
-                        {project.title}
+                  <img
+                    src={image}
+                    alt={`${photo.title} - View ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Overlay text on first image only */}
+                  {index === 0 && (
+                    <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
+                      <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+                        {photo.title}
                       </h1>
+                      <p className="text-lg md:text-xl text-white/90 max-w-3xl">
+                        {photo.description.split('.')[0]}.
+                      </p>
                     </div>
-
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/40 pointer-events-none" />
-                  </div>
+                  )}
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="left-4 bg-white/10 border-white/20 text-white hover:bg-white/20" />
-            <CarouselNext className="right-4 bg-white/10 border-white/20 text-white hover:bg-white/20" />
+            <CarouselPrevious className="left-4" />
+            <CarouselNext className="right-4" />
           </Carousel>
         </div>
 
         {/* Content Section */}
         <div className="container px-6 md:px-12 py-16">
-          <div className="max-w-3xl mx-auto space-y-8">
-            <div>
-              <h2 className="text-2xl font-semibold mb-4">About This Project</h2>
-              <p className="text-muted-foreground leading-relaxed">
+          <div className="max-w-4xl mx-auto">
+            <div className="mb-12">
+              <h2 className="text-3xl font-bold mb-6">Project Details</h2>
+              <p className="text-lg text-muted-foreground leading-relaxed">
                 {photo.description}
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-8 pt-8 border-t">
+            <div className="grid grid-cols-2 gap-8 mb-12">
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">Year</h3>
-                <p className="text-muted-foreground">{photo.year}</p>
+                <h3 className="text-sm font-semibold text-muted-foreground mb-2">YEAR</h3>
+                <p className="text-lg">{photo.year}</p>
               </div>
               <div>
-                <h3 className="text-sm font-semibold uppercase tracking-wider mb-2">Location</h3>
-                <p className="text-muted-foreground">{photo.location}</p>
+                <h3 className="text-sm font-semibold text-muted-foreground mb-2">LOCATION</h3>
+                <p className="text-lg">{photo.location}</p>
               </div>
             </div>
 
-            <div className="pt-8">
-              <button
-                onClick={() => navigate('/recent-work')}
-                className="text-sm font-medium hover:text-muted-foreground transition-colors"
-              >
-                ← Back to Recent Work
-              </button>
-            </div>
+            <button
+              onClick={() => navigate('/recent-work')}
+              className="text-sm font-medium hover:text-muted-foreground transition-colors"
+            >
+              ← Back to Gallery
+            </button>
           </div>
         </div>
       </main>
