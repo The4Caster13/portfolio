@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ProjectDetail from "./pages/ProjectDetail";
 import RecentWork from "./pages/RecentWork";
+import AllProjects from "./pages/AllProjects";
 import PhotoDetail from "./pages/PhotoDetail";
 import RecentWorkDetail from "./pages/RecentWorkDetail";
 import NotFound from "./pages/NotFound";
@@ -21,6 +22,7 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/projects" element={<AllProjects />} />
           <Route path="/project/:id" element={<ProjectDetail />} />
           <Route path="/recent-work" element={<RecentWork />} />
           <Route path="/recent-work/:id" element={<RecentWorkDetail />} />

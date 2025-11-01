@@ -53,7 +53,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     >
       {/* Project image */}
       <div className={`w-full md:w-7/12 ${index % 2 !== 0 ? 'md:order-2' : ''}`}>
-        <div className="relative aspect-video overflow-hidden">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
           <img 
             src={image} 
             alt={title} 

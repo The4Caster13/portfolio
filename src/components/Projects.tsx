@@ -9,6 +9,7 @@ export const projectsData = [
     description: "A modern minimalist residence designed to maximize natural light while maintaining privacy in an urban setting.",
     year: "2023",
     location: "New York, NY",
+    featured: true,
     images: [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
       "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
@@ -22,6 +23,7 @@ export const projectsData = [
     description: "Harmonizing with the surrounding landscape, this retreat employs sustainable materials and passive design strategies.",
     year: "2022",
     location: "Lake Tahoe, CA",
+    featured: true,
     images: [
       "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3",
       "https://images.unsplash.com/photo-1536376072056-3a5f4f7b6a7c?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3",
@@ -35,11 +37,54 @@ export const projectsData = [
     description: "Renovation project that transformed a traditional suburban house into a contemporary living space with open floor plans.",
     year: "2021",
     location: "Portland, OR",
+    featured: true,
     images: [
       "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=1774&auto=format&fit=crop&ixlib=rb-4.0.3",
       "https://images.unsplash.com/photo-1480074554294-5c5bb7b0e9fb?q=80&w=1774&auto=format&fit=crop&ixlib=rb-4.0.3",
       "https://images.unsplash.com/photo-1480074554297-5c5bb7b0e9fc?q=80&w=1774&auto=format&fit=crop&ixlib=rb-4.0.3",
       "https://images.unsplash.com/photo-1480074554298-5c5bb7b0e9fd?q=80&w=1774&auto=format&fit=crop&ixlib=rb-4.0.3"
+    ]
+  },
+  {
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+    title: "Modern Estate",
+    description: "Expansive estate featuring contemporary architecture with panoramic views and luxury amenities.",
+    year: "2023",
+    location: "Beverly Hills, CA",
+    featured: false,
+    images: [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"
+    ]
+  },
+  {
+    image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+    title: "Coastal Modern",
+    description: "Beachfront property with floor-to-ceiling glass walls and seamless indoor-outdoor living spaces.",
+    year: "2022",
+    location: "Miami Beach, FL",
+    featured: false,
+    images: [
+      "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"
+    ]
+  },
+  {
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+    title: "Industrial Loft",
+    description: "Converted warehouse space combining exposed structural elements with refined modern finishes.",
+    year: "2021",
+    location: "Chicago, IL",
+    featured: false,
+    images: [
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1615529328331-f8917597711f?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"
     ]
   }
 ];
@@ -69,6 +114,8 @@ const Projects = () => {
     };
   }, []);
 
+  const featuredProjects = projectsData.filter(project => project.featured);
+
   return (
     <section id="projects" className="py-24 md:py-32">
       <div className="container px-6 md:px-12">
@@ -78,17 +125,20 @@ const Projects = () => {
         </div>
         
         <div className="space-y-12">
-          {projectsData.map((project, index) => (
-            <ProjectCard 
-              key={index}
-              image={project.image}
-              title={project.title}
-              description={project.description}
-              year={project.year}
-              location={project.location}
-              index={index}
-            />
-          ))}
+          {featuredProjects.map((project, index) => {
+            const projectIndex = projectsData.findIndex(p => p === project);
+            return (
+              <ProjectCard 
+                key={projectIndex}
+                image={project.image}
+                title={project.title}
+                description={project.description}
+                year={project.year}
+                location={project.location}
+                index={projectIndex}
+              />
+            );
+          })}
         </div>
       </div>
     </section>
