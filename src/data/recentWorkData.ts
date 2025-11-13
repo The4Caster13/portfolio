@@ -14,6 +14,36 @@ import edge from "../assets/assets/sourpatch/edge.jpg";
 import screen from "../assets/assets/sourpatch/screen.jpg";
 import solemn from "../assets/assets/sourpatch/solemn.jpg";
 
+import burger from "../Assets/Assets/night/burger.jpg";
+import car from "../Assets/Assets/night/car.jpg";
+import corvette from "../Assets/Assets/night/corvette.jpg";
+import markham from "../Assets/Assets/night/markham.jpg";
+import miata from "../Assets/Assets/night/miata.jpg";
+import sign from "../Assets/Assets/night/sign.jpg";
+import train from "../Assets/Assets/night/train.jpg";
+
+import blur from "../Assets/Assets/start/blur.jpg";
+import gold from "../Assets/Assets/start/gold.jpg";
+import moving from "../Assets/Assets/start/moving.jpg";
+import night from "../Assets/Assets/start/night.jpg";
+import sky from "../Assets/Assets/start/sky.jpg";
+import soho from "../Assets/Assets/start/soho.jpg";
+
+import bike from "../Assets/Assets/nature/bike.jpg";
+import bikeman from "../Assets/Assets/nature/bikeman.jpg";
+import bridge from "../Assets/Assets/nature/bridge.jpg";
+import nature from "../Assets/Assets/nature/nature.jpg";
+import path from "../Assets/Assets/nature/path.jpg";
+import plant from "../Assets/Assets/nature/plant.jpg";
+import redplant from "../Assets/Assets/nature/redplant.jpg";
+
+import bench from "../Assets/Assets/ottawa/bench.jpg";
+import gbridge from "../Assets/Assets/ottawa/gbridge.jpg";
+import graffiti from "../Assets/Assets/ottawa/graffiti.jpg";
+import house from "../Assets/Assets/ottawa/house.jpg";
+import man from "../Assets/Assets/ottawa/man.jpg";
+import road from "../Assets/Assets/ottawa/road.jpg";
+import stop from "../Assets/Assets/ottawa/stop.jpg";
 
 export const recentWorkData = [
   {
@@ -37,55 +67,43 @@ export const recentWorkData = [
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-    title: "Coastal Villa",
-    description: "Mediterranean-inspired architecture with modern sensibilities, designed to capture ocean breezes and stunning sunset views.",
-    year: "2023",
-    location: "Santa Barbara, CA",
+    image: miata,
+    title: "Nighttime Photography",
+    description: "This series was built around the goal of understanding how light behaves at night. Before taking each photo, I thought carefully about the way shadows, artificial lighting, and color would influence the mood of the image. I wanted to test whether I could use contrast, emptiness, and framing to guide emotion and narrative in low-light scenes.",
+    year: "2023-2025",
+    location: "Toronto, ON",
     images: [
-      "https://images.unsplash.com/photo-1600573472550-8090b5e0745e?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600573472591-ee6b39e926fc?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600573472592-401b489a3cdc?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600573472556-e636b8da9f59?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"
+      burger, car, corvette, markham, miata, sign, train
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-    title: "Desert Oasis",
-    description: "A mid-century modern home reimagined for contemporary living, featuring clean lines and desert landscaping integration.",
-    year: "2023",
-    location: "Palm Springs, CA",
-    images: [
-      "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600047509782-20d39509f26d?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600047509358-9dc75507daeb?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600047510340-07c1a1d3a5be?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"
-    ]
-  },
-  {
-    image: "https://images.unsplash.com/photo-1600563438938-a9a27216b4f5?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-    title: "Urban Loft",
-    description: "Industrial warehouse conversion featuring exposed brick, high ceilings, and floor-to-ceiling windows overlooking the city.",
-    year: "2023",
-    location: "Brooklyn, NY",
-    images: [
-      "https://images.unsplash.com/photo-1600563438938-a9a27216b4f5?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600563438901-18b2aaa5a5b9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600563438939-a9a27216b4f6?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600563438940-a9a27216b4f7?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"
-    ]
-  },
-  {
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-    title: "Forest House",
-    description: "Nestled among towering trees, this residence uses natural materials and strategic glazing to create an immersive woodland experience.",
+    image: blur,
+    title: "Rough Beginnings",
+    description: "These photos capture my earliest steps into photography — a phase of trial and error, unintentional compositions, and happy mistakes. While many lacked clear subjects or meaning, each one taught me something new and nudged me closer to seeing the world with intention.",
     year: "2022",
-    location: "Seattle, WA",
+    location: "New York, NY",
     images: [
-      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600596542720-180eb5f20d07?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600596542657-70e2f7a0f050?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600596542578-f6d3f2c2e9d0?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"
+      blur, gold, moving, night, sky, soho
+    ]
+  },
+  {
+    image: bike,
+    title: "Nature's Call",
+    description: "In this series, I aimed to move beyond surface-level beauty and explore how natural environments can be used to test visual concepts like framing, symmetry, leading lines, and contrast. Each photo was composed with a purpose. I paid close attention to how color and light interacted with structure, using these tools to guide emotion and narrative. Rather than simply capturing nature, I worked to interpret it visually.",
+    year: "2025",
+    location: "Toronto, ON",
+    images: [
+      bike, bikeman, bridge, nature, path, plant, redplant
+    ]
+  },
+  {
+    image: bench,
+    title: "Ottawa Escapades",
+    description: "This series was created to explore how urban spaces can be transformed into compelling compositions through framing, perspective, and visual rhythm. Before each shot, I considered how elements like lines, structures, textures, and negative space would interact. These images reflect a more advanced approach to photography where architectural elements and everyday objects are arranged to guide the viewer’s eye, emphasize symmetry, or create subtle tension.",
+    year: "2025",
+    location: "Ottawa, ON",
+    images: [
+      bench, gbridge, graffiti, house, man, road, stop
     ]
   }
 ];
