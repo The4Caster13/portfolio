@@ -124,14 +124,14 @@ const Contact = () => {
           <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <h3 className="text-lg font-medium mb-2">Email</h3>
-              <p className="text-gray-400">contact@example.com</p>
+              <p className="text-gray-400">matthewchenf9@gmail.com</p>
             </div>
             <div>
               <h3 className="text-lg font-medium mb-2">Phone</h3>
-              <p className="text-gray-400">+1 (555) 123-4567</p>
+              <p className="text-gray-400">+1 (647)-830-7409</p>
             </div>
             <div>
-              <h3 className="text-lg font-medium mb-2">Studio Location</h3>
+              <h3 className="text-lg font-medium mb-2">Location</h3>
               <p className="text-gray-400">Toronto, ON</p>
             </div>
           </div>

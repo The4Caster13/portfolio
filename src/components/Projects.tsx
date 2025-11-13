@@ -35,10 +35,10 @@ export const projectsData = [
   },
   {
     image: drawing,
-    title: "Lakeside Retreat",
+    title: "Bayside Mansion",
     description: "Harmonizing with the surrounding landscape, this retreat employs sustainable materials and passive design strategies.",
-    year: "2022",
-    location: "Lake Tahoe, CA",
+    year: "2024-2025",
+    location: "San Jose, CA",
     featured: true,
     images: [
     ai, concept, drawing, plan1, plan2, plan3, plan4, line, sketch 

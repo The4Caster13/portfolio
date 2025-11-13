@@ -1,5 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
+import hero from "../assets/Assets/corb.jpg";
+
 
 const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,7 +13,8 @@ const Hero = () => {
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background image with overlay */}
-      <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3')] bg-cover bg-center">
+      <div className="absolute inset-0 bg-center bg-cover opacity-80"
+        style={{ backgroundImage: `url(${hero})` }}>
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
       
@@ -21,10 +24,10 @@ const Hero = () => {
           className={`max-w-3xl mx-auto text-center transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
         >
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-display">
-            Creating Spaces<br /> That Inspire
+            <br /> My Portfolio
           </h1>
           <p className="text-xl md:text-2xl text-gray-200 mb-8 font-light">
-            Architecture as a journey: exploring, evolving, creating.
+            Inspired by Le Corbusier
           </p>
           <button 
             onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
