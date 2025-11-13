@@ -1,3 +1,4 @@
+//smiskis
 import Garden from "../assets/assets/smiskis/garden.jpg";
 import Motherslove from "../assets/assets/smiskis/motherslove 3.jpg";
 import Perseverance from "../assets/assets/smiskis/perseverance.jpg";
@@ -6,14 +7,14 @@ import Rest from "../assets/assets/smiskis/rest 2.jpg";
 import Sadness from "../assets/assets/smiskis/sadness.jpg";
 import UnendingLove from "../assets/assets/smiskis/unendinglove.jpg";
 import title from "../assets/assets/smiskis/Garden_nc.jpg";
-
+//sourpatch
 import bag from "../assets/assets/sourpatch/bag.jpg";
 import bottle from "../assets/assets/sourpatch/bottle.jpg";
 import duo from "../assets/assets/sourpatch/duo.jpg";
 import edge from "../assets/assets/sourpatch/edge.jpg";
 import screen from "../assets/assets/sourpatch/screen.jpg";
 import solemn from "../assets/assets/sourpatch/solemn.jpg";
-
+//night
 import burger from "../Assets/Assets/night/burger.jpg";
 import car from "../Assets/Assets/night/car.jpg";
 import corvette from "../Assets/Assets/night/corvette.jpg";
@@ -21,14 +22,14 @@ import markham from "../Assets/Assets/night/markham.jpg";
 import miata from "../Assets/Assets/night/miata.jpg";
 import sign from "../Assets/Assets/night/sign.jpg";
 import train from "../Assets/Assets/night/train.jpg";
-
+//newyork
 import blur from "../Assets/Assets/start/blur.jpg";
 import gold from "../Assets/Assets/start/gold.jpg";
 import moving from "../Assets/Assets/start/moving.jpg";
 import night from "../Assets/Assets/start/night.jpg";
 import sky from "../Assets/Assets/start/sky.jpg";
 import soho from "../Assets/Assets/start/soho.jpg";
-
+//nature
 import bike from "../Assets/Assets/nature/bike.jpg";
 import bikeman from "../Assets/Assets/nature/bikeman.jpg";
 import bridge from "../Assets/Assets/nature/bridge.jpg";
@@ -36,7 +37,7 @@ import nature from "../Assets/Assets/nature/nature.jpg";
 import path from "../Assets/Assets/nature/path.jpg";
 import plant from "../Assets/Assets/nature/plant.jpg";
 import redplant from "../Assets/Assets/nature/redplant.jpg";
-
+//ottawa
 import bench from "../Assets/Assets/ottawa/bench.jpg";
 import gbridge from "../Assets/Assets/ottawa/gbridge.jpg";
 import graffiti from "../Assets/Assets/ottawa/graffiti.jpg";

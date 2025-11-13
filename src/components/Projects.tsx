@@ -3,6 +3,17 @@ import React, { useEffect, useRef } from 'react';
 //assets
 import initial from "../Assets/Assets/snowboard/initialplans.jpg";
 import video from "../Assets/Assets/snowboard/creativetimelapse.mp4";
+//cpt
+import ai from "../Assets/Assets/cpt/aiart.jpg";
+import concept from "../Assets/Assets/cpt/concept.jpg";
+import drawing from "../Assets/Assets/cpt/drawing.jpg";
+import plan1 from "../Assets/Assets/cpt/floorplan1.jpg";
+import plan2 from "../Assets/Assets/cpt/floorplan2.jpg";
+import plan3 from "../Assets/Assets/cpt/floorplan3.jpg";
+import plan4 from "../Assets/Assets/cpt/floorplan4.jpg";
+import line from "../Assets/Assets/cpt/line.jpg";
+import sketch from "../Assets/Assets/cpt/sketch.jpg";
+
 import ProjectCard from './ProjectCard';
 
 export const projectsData = [
@@ -23,17 +34,14 @@ export const projectsData = [
     ]
   },
   {
-    image: "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3",
+    image: drawing,
     title: "Lakeside Retreat",
     description: "Harmonizing with the surrounding landscape, this retreat employs sustainable materials and passive design strategies.",
     year: "2022",
     location: "Lake Tahoe, CA",
     featured: true,
     images: [
-      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1536376072056-3a5f4f7b6a7c?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1536376072033-4e2e6b8e1c6d?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1536375972964-84b6b7fd4b8a?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3"
+    ai, concept, drawing, plan1, plan2, plan3, plan4, line, sketch 
     ]
   },
   {
