@@ -90,7 +90,7 @@ const RecentWorkDetail = () => {
               onClick={() => navigate('/recent-work')}
               className="mt-8"
             >
-              ← Back to Recent Work
+              ← Back to Photography
             </Button>
           </div>
         </div>

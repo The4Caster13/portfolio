@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { projectsData } from '@/components/Projects';
+import plans from "../Assets/Assets/snowboard/initialplans.jpg";
+import snow from "../Assets/Assets/snowboard/snow.jpg";
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -49,10 +51,10 @@ const ProjectDetail = () => {
       }
     },
     {
-      stage: "CAD",
+      stage: "Design",
       title: "Technical Drawing",
       description: "Precise computer-aided design with measurements and specifications",
-      image: "https://images.unsplash.com/photo-1487887235947-a955ef187fcc?q=80&w=400&auto=format&fit=crop",
+      image: plans,
       icon: "📐",
       details: {
         process: "Converting conceptual sketches into precise technical drawings using CAD software. This phase focuses on accurate dimensions, structural elements, and building systems integration.",
@@ -78,7 +80,7 @@ const ProjectDetail = () => {
       stage: "Real Photo",
       title: "Built Reality",
       description: "The final constructed project in its environment",
-      image: project.image,
+      image: snow,
       icon: "📸",
       details: {
         process: "The culmination of the design process - the actual constructed building. This phase involves construction administration, quality control, and final documentation of the completed project.",

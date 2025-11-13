@@ -1,15 +1,20 @@
 
 import React, { useEffect, useRef } from 'react';
+//assets
+import initial from "../Assets/Assets/snowboard/initialplans.jpg";
+import video from "../Assets/Assets/snowboard/creativetimelapse.mp4";
 import ProjectCard from './ProjectCard';
 
 export const projectsData = [
   {
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-    title: "Urban Residence",
-    description: "A modern minimalist residence designed to maximize natural light while maintaining privacy in an urban setting.",
-    year: "2023",
-    location: "New York, NY",
+    image: initial,
+    title: "Snowboard Launcher",
+    description: "What began as a simple desire to practice snowboard tricks at home evolved into a full architectural exploration of form, ergonomics, and environmental fit. The Snowboard Launcher project became a study in how creative play can intersect with technical precision, and how designing for movement requires a deep understanding of both the human body and spatial experience. The process started with loose, intuitive sketches—hand explorations mapping slope, posture, and momentum. As the idea matured, these sketches transformed into measured technical drawings, modular breakdowns, and material studies. Through this iterative workflow, the project shifted from a spontaneous idea into a carefully crafted system of interlocking geometries, structural stability, and rider safety. This project reinforced one of the most important lessons in design: creativity is not a moment of inspiration, but a disciplined sequence of testing, refining, and redefining. From early concepts to scaled models, CAD drafting, 3D visualization, and the final build, each phase contributed to a solution that balances function, aesthetics, and play.",
+    year: "2024",
+    location: "North York, ON",
     featured: true,
+    media: video, 
+    type: "video", 
     images: [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
       "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
@@ -146,3 +151,4 @@ const Projects = () => {
 };
 
 export default Projects;
+

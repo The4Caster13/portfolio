@@ -8,7 +8,7 @@ const RecentWork = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
-    document.title = "Recent Work - Matthew Chen";
+    document.title = "Photography - Matthew Chen";
   }, []);
 
   // Create a masonry-style grid layout
@@ -28,7 +28,7 @@ const RecentWork = () => {
         <div className="container px-6 md:px-12">
           {/* Title */}
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">RECENT WORK</h1>
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tight">PHOTOGRAPHY</h1>
           </div>
 
           {/* Masonry Grid */}
