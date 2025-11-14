@@ -46,10 +46,10 @@ export const projectsData = [
   },
   {
     image: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=1774&auto=format&fit=crop&ixlib=rb-4.0.3",
-    title: "Suburban Transformation",
+    title: "Road Reconstruction",
     description: "Renovation project that transformed a traditional suburban house into a contemporary living space with open floor plans.",
-    year: "2021",
-    location: "Portland, OR",
+    year: "2025",
+    location: "Toronto, ON",
     featured: true,
     images: [
       "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=1774&auto=format&fit=crop&ixlib=rb-4.0.3",

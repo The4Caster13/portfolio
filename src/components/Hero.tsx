@@ -17,7 +17,7 @@ const Hero = () => {
         style={{ backgroundImage: `url(${hero})` }}>
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
-      
+     
       {/* Content */}
       <div className="container relative z-10 px-6 md:px-12">
         <div 

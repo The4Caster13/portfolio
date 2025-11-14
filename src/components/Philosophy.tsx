@@ -5,7 +5,7 @@ const philosophyPoints = [
   {
     number: "01",
     title: "Building",
-    description: "I see building as an essential part of thinking. A design is never complete until it has passed through the honesty of materials, structure, and gravity. When I build, I learn what drawings cannot show: how weight is carried, how joints behave, how a form responds to touch, and how a space feels when occupied. Building grounds ideas in reality and reminds me that every design must ultimately serve people, movement, and environment."
+    description: "I see building as an essential part of thinking. When I build, I try to channel my thoughts and imagine new ideas and concepts. Although my thoughts are derived from imagination, my designs remain grounded in reality: how weight is carried, how joints behave, how a form responds to touch, and how a space feels when occupied. Building grounds ideas in reality and reminds me that every design must ultimately serve people, movement, and environment."
   },
   {
     number: "02",
@@ -69,10 +69,7 @@ const Philosophy = () => {
 
         <div className="reveal from-bottom max-w-4xl mx-auto text-center">
           <blockquote className="text-xl md:text-2xl font-display italic leading-relaxed mb-6">
-            "Enjoy the butterflies, enjoy being naïve
-Enjoy the nerves, the pressure, people not knowing your name. 
-Enjoy the process of making a name for yourself, getting faster and faster with each lap and meeting some great people along the way
-Bring friends along. Bring family along. Don't assume they'll be a distraction. Don't be afraid to surround yourself with people you care about and love."
+            "Enjoy the butterflies, enjoy being naïve, enjoy the nerves, the pressure, people not knowing your name. Enjoy the process of making a name for yourself, getting faster and faster with each lap and meeting some great people along the way. Bring friends along. Bring family along. Don't assume they'll be a distraction. Don't be afraid to surround yourself with people you care about and love."
           </blockquote>
           <div className="text-gray-500">— Danielle Ricciardo</div>
         </div>

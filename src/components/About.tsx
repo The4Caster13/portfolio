@@ -37,7 +37,7 @@ const About = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
               <div className="w-24 h-1 bg-gray-900 mb-8"></div>
               <p className="text-gray-600 mb-6">
-                I'm an aspiring architect passionate about creating spaces that harmoniously blend functionality, aesthetics, and sustainability. With a strong foundation in architectural theory and practical design, I strive to develop innovative solutions that respond to both human needs and environmental concerns.
+                I'm an aspiring high school student passionate about creating spaces that harmoniously blend functionality, aesthetics, and sustainability. With a strong foundation in architectural theory and practical design, I strive to develop innovative solutions that respond to both human needs and environmental concerns.
               </p>
               <p className="text-gray-600 mb-6">
                 My approach to architecture centers on understanding the unique context of each project—its site, cultural significance, and the people who will interact with it. I believe that thoughtful design has the power to enhance lives and communities.
