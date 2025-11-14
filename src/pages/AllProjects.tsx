@@ -21,7 +21,7 @@ const AllProjects = () => {
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">ALL PROJECTS</h1>
             <p className="text-muted-foreground max-w-2xl mx-auto">
-              Explore our complete portfolio of architectural projects spanning residential, commercial, and mixed-use developments.
+              Explore my complete portfolio of projects spanning architecture, finance, and 3D design.
             </p>
           </div>
 

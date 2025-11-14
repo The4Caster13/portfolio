@@ -1,5 +1,5 @@
-
 import React, { useEffect, useRef } from 'react';
+import villa from "../Assets/Assets/web_zuerich_corbusier_pavillon_1280x960_25340.jpg";
 
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -51,8 +51,8 @@ const About = () => {
           <div className="reveal from-right">
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1573164713988-8665fc963095?q=80&w=1769&auto=format&fit=crop&ixlib=rb-4.0.3"
-                alt="Architect working"
+                src={villa}
+                alt="Villa de Savoy"
                 className="w-full h-auto"
               />
               <div className="absolute -bottom-5 -right-5 bg-white p-6 shadow-lg max-w-xs">

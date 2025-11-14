@@ -4,18 +4,18 @@ import React, { useEffect, useRef } from 'react';
 const philosophyPoints = [
   {
     number: "01",
-    title: "Building",
-    description: "I see building as an essential part of thinking. When I build, I try to channel my thoughts and imagine new ideas and concepts. Although my thoughts are derived from imagination, my designs remain grounded in reality: how weight is carried, how joints behave, how a form responds to touch, and how a space feels when occupied. Building grounds ideas in reality and reminds me that every design must ultimately serve people, movement, and environment."
+    title: "Learning",
+    description: "Learning is the foundation that connects every part of my process. Each project, whether successful or imperfect, sharpens my rational and technical understanding. I believe strong design requires humility and the willingness to reflect, ask questions, and to constantly challenge the idea behind it. Learning ensures that my work and my approach continue to evolve with every build and that allows for my knowledge base to continually compound."
   },
   {
     number: "02",
     title: "Creating",
-    description: "Creativity, for me, is an open-ended exploration fueled by curiosity. I move fluidly between sketching, modeling, and prototyping, allowing the process itself to reveal possibilities I could not predict. I value clean and intentional forms that have purpose in every angle and gesture. Creativity grows when the mind and hand work together, when experimentation is encouraged, and when no idea is too rough to be explored."
+    description: "Creativity, for me, is an open-ended exploration fueled by curiosity. I move fluidly between brainstorming, sketching, and 3D modeling, allowing the process itself to reveal various possibilities I did not initially anticipate. I value clean and intentional forms, in the final form, that have purpose in every angle and gesture. Creativity grows when the mind and hand work together, when experimentation is encouraged, and when no idea is too rough to be explored."
   },
   {
     number: "03",
-    title: "Learning",
-    description: "Learning is the foundation that connects every part of my process. Each project, whether successful or imperfect, sharpens my understanding of materials, ergonomics, and spatial experience. I believe strong design requires humility: the willingness to revise, to ask questions, and to let each challenge refine both the idea and the designer behind it. Learning ensures that my work and my approach continue to evolve with every build."
+    title: "Building",
+    description: "I see building as an essential part of thinking. When I build, I try to channel my thoughts and imagine new ideas and concepts. Although my thoughts are derived from imagination, my designs remain grounded in reality: how weight is carried, how joints behave, how a form responds to touch, and how a space feels when occupied. Building grounds ideas in reality and reminds me that every design must ultimately serve people, movement, and environment. It is heavily influenced by the architect, Le Corbusier, and every project emphasizes functionality and efficiency as well as design."
   }
 ];
 
