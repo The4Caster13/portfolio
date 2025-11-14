@@ -1,141 +1,143 @@
-
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import confetti from "canvas-confetti";
 
 const Contact = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    message: ""
+    message: "",
+    honeypot: "",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessAnim, setShowSuccessAnim] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+  // Handle input updates
+  const handleChange = (e: any) =>
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Submit form
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    // Spam bot check
+    if (formData.honeypot !== "") return;
+
+    try {
+      const form = new FormData();
+      form.append("name", formData.name);
+      form.append("email", formData.email);
+      form.append("message", formData.message);
+
+      await fetch(
+        "https://script.google.com/macros/s/AKfycbxz4JWZyGGaVmdcvAgpyV8qKAXWICkIjlqj17VPChwyuWe6JDfkazFCIFFDoM9IXoB7yw/exec",
+        { method: "POST", body: form }
+      );
+
+      // Notification
       toast({
         title: "Message sent!",
         description: "Thanks for reaching out. I'll get back to you soon.",
       });
-      setFormData({ name: "", email: "", message: "" });
-    }, 1500);
-  };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active');
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
+      // Reset form fields
+      setFormData({ name: "", email: "", message: "", honeypot: "" });
 
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+      // Show GIF success popup
+      setShowSuccessAnim(true);
+      setTimeout(() => setShowSuccessAnim(false), 2500);
+
+      // Fire confetti
+      confetti({
+        particleCount: 200,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+
+    } catch (err) {
+      console.error(err);
+      toast({
+        title: "Error",
+        description: "Message failed. Try again later.",
+        variant: "destructive",
+      });
     }
 
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
+    setIsSubmitting(false);
+  };
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-gray-950 text-white">
-      <div ref={sectionRef} className="container px-6 md:px-12">
-        <div className="max-w-3xl mx-auto reveal from-bottom">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Get In Touch</h2>
-          <div className="w-24 h-1 bg-white mb-8"></div>
-          <p className="text-gray-300 mb-10">
-            Interested in collaborating or have questions about my work? 
-            I'd love to hear from you. Send me a message and I'll respond as soon as possible.
-          </p>
-          
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Name
-                </label>
-                <Input
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="bg-gray-900 border-gray-800 focus:border-gray-700 text-white"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Email
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="bg-gray-900 border-gray-800 focus:border-gray-700 text-white"
-                />
-              </div>
-            </div>
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium mb-2">
-                Message
-              </label>
-              <Textarea
-                id="message"
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                required
-                rows={5}
-                className="bg-gray-900 border-gray-800 focus:border-gray-700 text-white"
-              />
-            </div>
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="bg-white text-gray-900 hover:bg-gray-200 rounded-none px-8 py-6"
-            >
-              {isSubmitting ? "Sending..." : "Send Message"}
-            </Button>
-          </form>
-          
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-              <h3 className="text-lg font-medium mb-2">Email</h3>
-              <p className="text-gray-400">matthewchenf9@gmail.com</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-medium mb-2">Phone</h3>
-              <p className="text-gray-400">+1 (647)-830-7409</p>
-            </div>
-            <div>
-              <h3 className="text-lg font-medium mb-2">Location</h3>
-              <p className="text-gray-400">Toronto, ON</p>
-            </div>
-          </div>
-        </div>
+    <section id="contact" className="py-24 md:py-32 bg-gray-950 text-white relative">
+
+      {/* SUCCESS GIF POPUP */}
+      {showSuccessAnim && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black/70 z-[9999]">
+    <div className="text-4xl font-semibold text-white">
+      Success!
+    </div>
+  </div>
+)}
+
+
+      {/* CONTENT */}
+      <div className="container px-6 md:px-12 max-w-3xl mx-auto">
+
+        <h2 className="text-3xl md:text-4xl font-bold mb-6">Get In Touch</h2>
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+
+          {/* Invisible spam trap */}
+          <input
+            name="honeypot"
+            className="hidden"
+            value={formData.honeypot}
+            onChange={handleChange}
+          />
+
+          <Input
+            name="name"
+            placeholder="Name"
+            className="bg-gray-900 border-gray-700"
+            onChange={handleChange}
+            value={formData.name}
+            required
+          />
+
+          <Input
+            name="email"
+            type="email"
+            placeholder="Email"
+            className="bg-gray-900 border-gray-700"
+            onChange={handleChange}
+            value={formData.email}
+            required
+          />
+
+          <Textarea
+            name="message"
+            placeholder="Message"
+            rows={4}
+            className="bg-gray-900 border-gray-700"
+            onChange={handleChange}
+            value={formData.message}
+            required
+          />
+
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            className="px-6 py-4"
+          >
+            {isSubmitting ? "Sending..." : "Send Message"}
+          </Button>
+        </form>
       </div>
     </section>
   );
