@@ -190,7 +190,7 @@ const RecentWorkDetail = () => {
               </div>
 
               <Button
-                onClick={() => navigate("/recent-work")}
+                onClick={() => navigate("/photography")}
                 className="mt-12 bg-white/10 text-white border border-white/50 hover:bg-white/20 hover:border-white font-medium backdrop-blur-sm">
                 ← Back to Photography
               </Button>

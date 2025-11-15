@@ -85,7 +85,7 @@ const PhotoDetail = () => {
             </div>
 
             <button
-              onClick={() => navigate('/recent-work')}
+              onClick={() => navigate('/photography')}
               className="text-sm font-medium hover:text-muted-foreground transition-colors"
             >
               ← Back to Gallery

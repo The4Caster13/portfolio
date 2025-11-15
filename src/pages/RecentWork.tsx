@@ -71,7 +71,7 @@ const RecentWork = () => {
             {masonryItems.map((item, index) => (
               <div
                 key={index}
-                onClick={() => navigate(`/recent-work/${index}`)}
+                onClick={() => navigate(`/photography/${index}`)}
                 className={`group relative overflow-hidden rounded-2xl ${item.gridClass} cursor-pointer transition-transform duration-300 hover:scale-[1.02]`}
               >
                 <div className="w-full h-full">
