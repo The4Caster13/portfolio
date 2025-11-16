@@ -1,6 +1,6 @@
 // smiskis
 import Garden from "../Assets/Assets/smiskis/Garden_nc.jpg";
-import Motherslove from "../Assets/Assets/smiskis/Mother's Love.jpg";
+import Motherslove from "../Assets/Assets/smiskis/Motherlove.jpg";
 import Perseverance from "../Assets/Assets/smiskis/Perseverance.jpg";
 import Resolve from "../Assets/Assets/smiskis/Resolve.jpg";
 import Rest from "../Assets/Assets/smiskis/Rest.jpg";
