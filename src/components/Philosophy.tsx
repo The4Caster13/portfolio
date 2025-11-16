@@ -71,7 +71,7 @@ const Philosophy = () => {
           <blockquote className="text-xl md:text-2xl font-display italic leading-relaxed mb-6">
             "Enjoy the butterflies, enjoy being naïve, enjoy the nerves, the pressure, people not knowing your name. Enjoy the process of making a name for yourself, getting faster and faster with each lap and meeting some great people along the way. Bring friends along. Bring family along. Don't assume they'll be a distraction. Don't be afraid to surround yourself with people you care about and love."
           </blockquote>
-          <div className="text-gray-500">— Danielle Ricciardo</div>
+          <div className="text-gray-500">— Daniel Ricciardo</div>
         </div>
       </div>
     </section>
