@@ -28,10 +28,10 @@ export const projectsData = [
     media: video, 
     type: "video", 
     images: [
-      initial,
-      "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600585152915-d208bec867a1?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
-      "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"
+      { url: initial, type: 'image' },
+      { url: video, type: 'video' },
+      { url: "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3", type: 'image' },
+      { url: "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3", type: 'image' }
     ],
     progressionStages: [
       {

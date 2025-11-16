@@ -12,7 +12,7 @@ const ProjectDetail = () => {
   const navigate = useNavigate();
 
   // CAROUSEL LOGIC START
-  // 1. State to track the currently displayed image index
+  // 1. State to track the currently displayed media index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   // CAROUSEL LOGIC END
 
@@ -46,26 +46,32 @@ const ProjectDetail = () => {
   }
   
   // CAROUSEL LOGIC START
-  // 2. Determine the images array, using project.image as a fallback for the first slide
-  const images = project.images && project.images.length > 0
+  // 2. Determine the media array (now handles objects with url and type), 
+  //    using project.image as a fallback for the first slide (assuming it's an image object { url: ..., type: 'image' })
+  // NOTE: projectsData must have elements structured like: { url: '...', type: 'image' | 'video' }
+  const media = project.images && project.images.length > 0
     ? project.images
-    : [project.image]; 
+    // Fallback for older projects: assume project.image is an image URL
+    : [{ url: project.image, type: 'image' }]; 
   
-  // 3. Carousel Navigation Handlers
+  // 3. Carousel Navigation Handlers (updated to use 'media.length')
   const goToNext = () => {
     setCurrentImageIndex((prevIndex) => 
-      (prevIndex + 1) % images.length
+      (prevIndex + 1) % media.length
     );
   };
 
   const goToPrev = () => {
     setCurrentImageIndex((prevIndex) => 
-      (prevIndex - 1 + images.length) % images.length
+      (prevIndex - 1 + media.length) % media.length
     );
   };
 
-  // Get the current image URL for display
-  const currentImageUrl = images[currentImageIndex];
+  // Get the current media object properties
+  const currentMedia = media[currentImageIndex];
+  const currentMediaUrl = currentMedia.url;
+  // NEW: Get the type of the current media (e.g., 'image' or 'video')
+  const currentMediaType = currentMedia.type; 
   // CAROUSEL LOGIC END
 
   // interactive points on the image (drag + zoom) 
@@ -216,22 +222,43 @@ const ProjectDetail = () => {
               // CAROUSEL LOGIC: Add 'group' class to enable hover effects on navigation buttons
               className="relative w-full overflow-hidden bg-off-white shadow-2xl rounded-lg border border-sage/20 group" 
             >
-              {/* CAROUSEL LOGIC: Update image src to use the currentImageUrl */}
-              <img 
-                src={currentImageUrl} 
-                alt={`${project.title} image ${currentImageIndex + 1}`}
-                className="w-full object-contain"
-                style={{ pointerEvents: 'none' }}
-              />
               
-              {/* CAROUSEL LOGIC START: Navigation Arrows (show only if multiple images exist) */}
-              {images.length > 1 && (
+              {/* CAROUSEL LOGIC START: Conditional Media Rendering */}
+              {/* Conditionally render <video> or <img> based on currentMediaType */}
+              {currentMediaType === 'video' ? (
+                <video
+                  key={currentMediaUrl} // Key forces re-render/reload when video changes
+                  src={currentMediaUrl}
+                  alt={`${project.title} video ${currentImageIndex + 1}`} 
+                  className="w-full object-contain"
+                  controls // Enables native video controls (play/pause, volume, etc.)
+                  loop 
+                  muted 
+                  autoPlay 
+                >
+                  Your browser does not support the video tag.
+                </video>
+              ) : (
+                <img 
+                  // Update src to use currentMediaUrl (which holds the current image URL)
+                  src={currentMediaUrl} 
+                  alt={`${project.title} image ${currentImageIndex + 1}`}
+                  className="w-full object-contain"
+                  style={{ pointerEvents: 'none' }}
+                />
+              )}
+              {/* CAROUSEL LOGIC END: Conditional Media Rendering */}
+              
+              {/* CAROUSEL LOGIC START: Navigation Arrows (Always visible if multiple media items exist) */}
+              {/* FIX 1: Navigation arrows are now always visible if media.length > 1, allowing video cycling. */}
+              {media.length > 1 && (
                 <>
                   {/* Previous Button */}
                   <button
                     onClick={goToPrev}
+                    // z-30 ensures this button is clickable over the video element
                     className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full bg-white/70 text-gray-800 shadow-lg hover:bg-white transition-all opacity-0 group-hover:opacity-100 duration-300 z-30"
-                    aria-label="Previous image"
+                    aria-label="Previous media"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
                   </button>
@@ -239,8 +266,9 @@ const ProjectDetail = () => {
                   {/* Next Button */}
                   <button
                     onClick={goToNext}
+                    // z-30 ensures this button is clickable over the video element
                     className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full bg-white/70 text-gray-800 shadow-lg hover:bg-white transition-all opacity-0 group-hover:opacity-100 duration-300 z-30"
-                    aria-label="Next image"
+                    aria-label="Next media"
                   >
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                   </button>
@@ -249,7 +277,8 @@ const ProjectDetail = () => {
               {/* CAROUSEL LOGIC END: Navigation Arrows */}
 
 
-              {interactivePoints.map((point) => (
+              {/* FIX 2: Only render interactive points if the current media is an image */}
+              {currentMediaType === 'image' && interactivePoints.map((point) => (
                 <div
                   key={point.id}
                   className={`absolute transition-all duration-300 z-20 ${
@@ -264,13 +293,13 @@ const ProjectDetail = () => {
                   onClick={() => handlePointClick(point.id)}
                 >
                   {selectedZoom === point.id ? (
-                    /* react magnifying code (lowk this has to change cause it barely works rn) */
+                    /* react magnifying code (Note: Magnifier works best on static images) */
                     <div className="relative w-32 h-32">
                       <div
                         className="absolute inset-0 rounded-full overflow-hidden border-4 border-forest-green shadow-2xl"
                         style={{
-                          // CAROUSEL LOGIC: Use currentImageUrl for the magnifier background
-                          background: `url(${currentImageUrl})`,
+                          // CAROUSEL LOGIC: Use currentMediaUrl for the magnifier background
+                          background: `url(${currentMediaUrl})`,
                           backgroundSize: '300%',
                           backgroundPosition: `${point.x}% ${point.y}%`,
                           backgroundRepeat: 'no-repeat'
@@ -294,11 +323,13 @@ const ProjectDetail = () => {
                   )}
                 </div>
               ))}
+              {/* FIX 2 END: Wrapped interactivePoints mapping */}
 
-              {/* CAROUSEL LOGIC START: Dot Indicators */}
-              {images.length > 1 && (
+              {/* CAROUSEL LOGIC START: Dot Indicators (Always visible if multiple media items exist) */}
+              {/* FIX 3: Dot indicators are now always visible if media.length > 1, allowing video cycling. */}
+              {media.length > 1 && (
                 <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
-                  {images.map((_, index) => (
+                  {media.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
@@ -314,12 +345,18 @@ const ProjectDetail = () => {
               )}
               {/* CAROUSEL LOGIC END: Dot Indicators */}
               
-              {/* gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-forest-green/10 via-transparent to-sky-blue/10 pointer-events-none"></div>
+              {/* FIX 4: Conditional Gradient Overlay */}
+              {/* This gradient overlay is only shown if it's an image, preventing click blocking on video controls. */}
+              {currentMediaType === 'image' && (
+                <div className="absolute inset-0 bg-gradient-to-tr from-forest-green/10 via-transparent to-sky-blue/10 pointer-events-none"></div>
+              )}
+              {/* FIX 4 END: Conditional Gradient Overlay */}
             </div>
 
             {/* zoom popup text */}
-            {selectedZoom && (
+            {/* FIX 5: Conditional Zoom Popup Text */}
+            {/* Only show zoom popup if it is currently selected AND the media is an image. */}
+            {selectedZoom && currentMediaType === 'image' && (
               <div className="mt-6 p-6 bg-off-white/90 backdrop-blur-sm rounded-lg border border-sage/20 shadow-lg">
                 <div className="flex items-center justify-between mb-3">
                   <h4 className="font-semibold text-forest-green text-lg">
@@ -339,6 +376,7 @@ const ProjectDetail = () => {
                 </p>
               </div>
             )}
+            {/* FIX 5 END: Conditional Zoom Popup Text */}
           </div>
 
           {/* change ts its acc so bad, its the same for all the projects its acc horrible */}
