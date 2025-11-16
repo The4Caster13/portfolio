@@ -1,20 +1,20 @@
 // smiskis
-import Garden from "../assets/assets/smiskis/Garden_nc.jpg";
-import Motherslove from "../assets/assets/smiskis/Mother's Love.jpg";
-import Perseverance from "../assets/assets/smiskis/Perseverance.jpg";
-import Resolve from "../assets/assets/smiskis/Resolve.jpg";
-import Rest from "../assets/assets/smiskis/Rest.jpg";
-import Sadness from "../assets/assets/smiskis/Sadness.jpg";
-import UnendingLove from "../assets/assets/smiskis/Unending Love.jpg";
-import title from "../assets/assets/smiskis/Garden_nc.jpg";
+import Garden from "../Assets/Assets/smiskis/Garden_nc.jpg";
+import Motherslove from "../Assets/Assets/smiskis/Mother's Love.jpg";
+import Perseverance from "../Assets/Assets/smiskis/Perseverance.jpg";
+import Resolve from "../Assets/Assets/smiskis/Resolve.jpg";
+import Rest from "../Assets/Assets/smiskis/Rest.jpg";
+import Sadness from "../Assets/Assets/smiskis/Sadness.jpg";
+import UnendingLove from "../Assets/Assets/smiskis/Unending Love.jpg";
+import title from "../Assets/Assets/smiskis/Garden_nc.jpg";
 
 // sourpatch
-import bag from "../assets/assets/sourpatch/bag.jpg";
-import bottle from "../assets/assets/sourpatch/bottle.jpg";
-import duo from "../assets/assets/sourpatch/duo.jpg";
-import edge from "../assets/assets/sourpatch/edge.jpg";
-import screen from "../assets/assets/sourpatch/screen.jpg";
-import solemn from "../assets/assets/sourpatch/solemn.jpg";
+import bag from "../Assets/Assets/sourpatch/bag.jpg";
+import bottle from "../Assets/Assets/sourpatch/bottle.jpg";
+import duo from "../Assets/Assets/sourpatch/duo.jpg";
+import edge from "../Assets/Assets/sourpatch/edge.jpg";
+import screen from "../Assets/Assets/sourpatch/screen.jpg";
+import solemn from "../Assets/Assets/sourpatch/solemn.jpg";
 
 // night
 import burger from "../Assets/Assets/night/burger.jpg";
