@@ -12,13 +12,12 @@ const Hero = () => {
 
   return (
     <section className="relative h-screen flex items-center justify-center overflow-hidden">
-      {/* Background image with overlay */}
+      {/* background image */}
       <div className="absolute inset-0 bg-center bg-cover opacity-80"
         style={{ backgroundImage: `url(${hero})` }}>
         <div className="absolute inset-0 bg-black/50"></div>
       </div>
      
-      {/* Content */}
       <div className="container relative z-10 px-6 md:px-12">
         <div 
           className={`max-w-3xl mx-auto text-center transition-all duration-1000 ease-out transform ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'}`}
@@ -38,7 +37,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll indicator with enhanced animations */}
+      {/* scroll code */}
       <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 flex flex-col items-center text-white/80">
         <span className="text-xs uppercase tracking-widest mb-2 animate-bounce">Scroll</span>
         <div className="flex flex-col items-center">

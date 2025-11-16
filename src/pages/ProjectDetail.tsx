@@ -15,11 +15,11 @@ const ProjectDetail = () => {
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const imageRef = useRef<HTMLDivElement>(null);
   
-  // Find the project based on the id
+  // find project id
   const projectIndex = Number(id);
   const project = projectsData[projectIndex];
   
-  // Redirect to home if project doesn't exist
+  // redirect home if the page is nonexistent
   useEffect(() => {
     if (!project) {
       navigate('/');
@@ -28,14 +28,14 @@ const ProjectDetail = () => {
   
   if (!project) return null;
 
-  // Interactive points for different areas of the image - now with draggable positions
+  // interactive points on the image 
   const [interactivePoints, setInteractivePoints] = useState([
     { id: 1, x: 25, y: 30, label: "Exterior Detail", description: "Modern facade with sustainable materials" },
     { id: 2, x: 65, y: 45, label: "Window Design", description: "Energy-efficient glazing system" },
     { id: 3, x: 45, y: 70, label: "Landscaping", description: "Native plant integration" },
   ]);
 
-  // Progression stages data
+  // progression stages data / need to separate this from each project to give me more freedom (mark can u do this)
   const progressionStages = [
     {
       stage: "Sketch",
@@ -92,7 +92,7 @@ const ProjectDetail = () => {
   ];
 
   const handlePointClick = (pointId: number) => {
-    if (isDragging === pointId) return; // Don't toggle zoom if we're dragging
+    if (isDragging === pointId) return; // Don't toggle zoom 
     console.log('Point clicked:', pointId);
     setSelectedZoom(selectedZoom === pointId ? null : pointId);
   };
@@ -125,7 +125,7 @@ const ProjectDetail = () => {
     const newX = ((e.clientX - dragOffset.x - rect.left) / rect.width) * 100;
     const newY = ((e.clientY - dragOffset.y - rect.top) / rect.height) * 100;
     
-    // Constrain to image bounds
+    // constraint to image boundaries (might need to replace)
     const constrainedX = Math.max(5, Math.min(95, newX));
     const constrainedY = Math.max(5, Math.min(95, newY));
     
@@ -163,7 +163,7 @@ const ProjectDetail = () => {
     <>
       <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 relative overflow-hidden">
-        {/* Background texture overlays */}
+        {/* Background texture */}
         <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -183,7 +183,7 @@ const ProjectDetail = () => {
           </svg>
         </div>
 
-        {/* Leaf motifs */}
+        {/* leaf pattern (copy and paste to other react components if i want to use later) */}
         <div className="absolute top-10 left-10 opacity-20">
           <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
             <path d="M30 5C35 15 45 25 30 55C15 25 25 15 30 5Z" fill="#2E7D32"/>
@@ -201,7 +201,6 @@ const ProjectDetail = () => {
           </svg>
         </div>
 
-        {/* Branching patterns */}
         <div className="absolute bottom-0 right-0 opacity-15">
           <svg width="300" height="300" viewBox="0 0 300 300" fill="none">
             <path d="M150 300L150 200L100 150L50 100" stroke="#2E7D32" strokeWidth="3"/>
@@ -222,7 +221,7 @@ const ProjectDetail = () => {
             Back to projects
           </button>
           
-          {/* Large project image with interactive magnifying glass points */}
+          {/* magnifying glass */}
           <div className="mb-12">
             <div 
               ref={imageRef}
@@ -235,7 +234,6 @@ const ProjectDetail = () => {
                 style={{ pointerEvents: 'none' }}
               />
               
-              {/* Interactive magnifying glass points */}
               {interactivePoints.map((point) => (
                 <div
                   key={point.id}
@@ -251,32 +249,30 @@ const ProjectDetail = () => {
                   onClick={() => handlePointClick(point.id)}
                 >
                   {selectedZoom === point.id ? (
-                    /* Magnifying glass with transparent center showing zoomed content */
+                    /* react magnifying code (lowk this has to change cause it barely works rn) */
                     <div className="relative w-32 h-32">
-                      {/* Magnified background */}
+                      {/* the thing being magnified (takes the background and zooms)  */}
                       <div 
                         className="absolute inset-0 rounded-full overflow-hidden border-4 border-forest-green shadow-2xl"
                         style={{
                           background: `url(${project.image})`,
-                          backgroundSize: '300%', // 3x zoom
+                          backgroundSize: '300%', // zoom amount
                           backgroundPosition: `${point.x}% ${point.y}%`,
                           backgroundRepeat: 'no-repeat'
                         }}
                       />
-                      {/* Magnifying glass rim */}
+                      {/* glass */}
                       <div className="absolute inset-0 rounded-full border-4 border-forest-green bg-transparent"></div>
-                      {/* Handle */}
+                      {/* handle */}
                       <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-forest-green rounded-full shadow-lg"></div>
                       <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-white rounded-full"></div>
                     </div>
                   ) : (
-                    /* Translucent point */
                     <div className="w-6 h-6 bg-white/50 backdrop-blur-sm rounded-full border-2 border-white/80 shadow-lg hover:bg-white/70 hover:scale-110 transition-all duration-300">
                       <div className="w-full h-full rounded-full bg-forest-green/30 hover:bg-forest-green/40 transition-all duration-300"></div>
                     </div>
                   )}
                   
-                  {/* Tooltip - only show when not expanded and not dragging */}
                   {selectedZoom !== point.id && isDragging !== point.id && (
                     <div className="absolute top-10 left-1/2 transform -translate-x-1/2 opacity-0 hover:opacity-100 transition-opacity duration-200 bg-charcoal text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap z-30 pointer-events-none">
                       {point.label}
@@ -286,11 +282,11 @@ const ProjectDetail = () => {
                 </div>
               ))}
               
-              {/* Gradient overlay */}
+              {/* gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-tr from-forest-green/10 via-transparent to-sky-blue/10 pointer-events-none"></div>
             </div>
             
-            {/* Zoom info */}
+            {/* zoom */}
             {selectedZoom && (
               <div className="mt-6 p-6 bg-off-white/90 backdrop-blur-sm rounded-lg border border-sage/20 shadow-lg">
                 <div className="flex items-center justify-between mb-3">
@@ -313,7 +309,7 @@ const ProjectDetail = () => {
             )}
           </div>
 
-          {/* Design Progression Section */}
+          {/* design progression section (deattach this from general to specific projects to make it more personal (ASAP CHANGE)) */}
           <div className="mb-12">
             <div className="bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
               <h3 className="text-2xl font-bold mb-6 text-forest-green">Design Progression</h3>
@@ -359,7 +355,6 @@ const ProjectDetail = () => {
                 ))}
               </div>
 
-              {/* Stage Details */}
               {selectedStage !== null && (
                 <div className="mt-8 p-6 bg-white/90 backdrop-blur-sm rounded-lg border border-sage/20 shadow-lg animate-fade-in">
                   <div className="flex items-center justify-between mb-4">
@@ -415,7 +410,7 @@ const ProjectDetail = () => {
             </div>
           </div>
           
-          {/* Project details moved below the progression */}
+          {/* below progression project details (separate from projects/ lowk this changes the entire react code so this comment is basically useless) */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
               <div className="border-b border-sage pb-2 mb-6">

@@ -16,10 +16,9 @@ const AllProjects = () => {
     <>
       <Navbar />
 
-      {/* Main Wrapper */}
       <main className="relative min-h-screen bg-background pt-24 pb-16 overflow-hidden">
 
-        {/* ░░░ BACKGROUND PATTERN (Rings + Waves) ░░░ */}
+        {/* background pattern */}
         <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -39,7 +38,7 @@ const AllProjects = () => {
           </svg>
         </div>
 
-        {/* ░░░ LEAF DECORATIONS ░░░ */}
+        {/* leaf decorations */}
         <div className="absolute top-14 left-10 opacity-10">
           <svg width="65" height="65" viewBox="0 0 60 60" fill="none">
             <path d="M30 5C35 15 45 25 30 55C15 25 25 15 30 5Z" fill="#1b1b1b" />
@@ -53,7 +52,7 @@ const AllProjects = () => {
           </svg>
         </div>
 
-        {/* ░░░ PAGE CONTENT (Foreground) ░░░ */}
+        {/* page content */}
         <div className="container px-6 md:px-12 relative z-10">
 
           {/* Title */}

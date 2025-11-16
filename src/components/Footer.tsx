@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="container px-6 md:px-12">
         <div className="flex flex-col md:flex-row justify-between items-center">
           
-          {/* NAME + TAGLINE */}
+          {/* name and mission */}
           <div className="mb-6 md:mb-0">
             <div className="text-lg font-bold text-white font-display">
               MATTHEW <span className="text-gray-500">CHEN</span>
@@ -18,10 +18,9 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* SOCIAL ICONS */}
           <div className="flex space-x-6">
 
-            {/* INSTAGRAM */}
+            {/* insta */}
             <a
               href="https://instagram.com/the4caster"
               target="_blank"
@@ -38,7 +37,7 @@ const Footer = () => {
               </svg>
             </a>
 
-            {/* DISCORD */}
+            {/* discord */}
             <a
               href="https://discord.com/users/the4caster13"
               target="_blank"
@@ -55,7 +54,7 @@ const Footer = () => {
               </svg>
             </a>
 
-            {/* GITHUB */}
+            {/* github */}
             <a
               href="https://github.com/The4Caster13"
               target="_blank"
@@ -79,7 +78,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* COPYRIGHT */}
+        {/* this means absolutely nothing but lovable things i have a trademark so keep */}
         <div className="mt-8 pt-8 border-t border-gray-800 text-center text-sm">
           © {currentYear} Matthew Chen. All rights reserved.
         </div>

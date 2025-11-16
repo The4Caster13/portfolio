@@ -9,7 +9,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Detect scroll to change navbar style
+  // detect scroll to change navbar style
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -18,14 +18,12 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Handle scroll to section or navigate to home then scroll
   const scrollToSection = (sectionId: string) => {
     setMenuOpen(false);
     
-    // If we're not on the homepage, navigate there first
+    // if we're not on the homepage, navigate there first (homepage start)
     if (location.pathname !== '/') {
       navigate('/');
-      // Use setTimeout to ensure navigation completes before scrolling
       setTimeout(() => {
         const section = document.getElementById(sectionId);
         if (section) {
@@ -33,7 +31,6 @@ const Navbar = () => {
         }
       }, 100);
     } else {
-      // We're already on homepage, just scroll
       const section = document.getElementById(sectionId);
       if (section) {
         section.scrollIntoView({ behavior: 'smooth' });
@@ -58,7 +55,7 @@ const Navbar = () => {
           </button>
         </div>
 
-        {/* Mobile menu button */}
+        {/* mobile shit */}
         <button 
           className="md:hidden z-50" 
           onClick={() => setMenuOpen(!menuOpen)}
@@ -69,7 +66,7 @@ const Navbar = () => {
           <div className={`w-6 h-0.5 bg-gray-900 transition-all ${menuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></div>
         </button>
 
-        {/* Desktop navigation */}
+        {/* navigation on desktop */}
         <nav className="hidden md:flex space-x-8 text-sm font-medium">
           <button onClick={() => navigate('/photography')} className="hover:text-gray-600 transition-colors">Photography</button>
           <button onClick={() => navigate('/projects')} className="hover:text-gray-600 transition-colors">Projects</button>
@@ -78,7 +75,7 @@ const Navbar = () => {
           <button onClick={() => scrollToSection('contact')} className="hover:text-gray-600 transition-colors">Contact</button>
         </nav>
 
-        {/* Mobile navigation overlay */}
+        {/* more mobile shits */}
         <div className={`md:hidden fixed inset-0 bg-white transition-opacity duration-300 ${menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
           <div className="flex flex-col items-center justify-center h-full space-y-8 text-lg font-medium">
             <button onClick={() => { navigate('/photography'); setMenuOpen(false); }} className="hover:text-gray-600 transition-colors">Photography</button>

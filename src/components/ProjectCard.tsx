@@ -10,7 +10,7 @@ interface ProjectCardProps {
   location: string;
   index: number;
 }
-
+  // each project's different specs
 const ProjectCard: React.FC<ProjectCardProps> = ({ 
   image, 
   title, 
@@ -43,7 +43,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     };
   }, []);
 
-  // Alternate between left and right reveal
   const animationClass = index % 2 === 0 ? 'from-left' : 'from-right';
 
   return (
@@ -51,7 +50,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       ref={cardRef}
       className={`reveal ${animationClass} flex flex-col md:flex-row mb-24 last:mb-0`}
     >
-      {/* Project image */}
+      {/* main project image (will def change this code) */}
       <div className={`w-full md:w-7/12 ${index % 2 !== 0 ? 'md:order-2' : ''}`}>
         <div className="relative aspect-[4/3] overflow-hidden rounded-lg">
           <img 
@@ -62,7 +61,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
         </div>
       </div>
 
-      {/* Project info */}
+      {/* project info (i need to change the entire project part) */}
       <div className={`w-full md:w-5/12 ${index % 2 !== 0 ? 'md:order-1 md:pr-12' : 'md:pl-12'} flex flex-col justify-center mt-6 md:mt-0`}>
         <div className="border-b border-gray-300 pb-2 mb-4">
           <span className="text-sm text-gray-500">{year} | {location}</span>

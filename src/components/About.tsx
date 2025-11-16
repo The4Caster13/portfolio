@@ -33,6 +33,7 @@ const About = () => {
       <div ref={sectionRef} className="container px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
+            {/*About me rationale*/}
             <div className="reveal from-left">
               <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
               <div className="w-24 h-1 bg-gray-900 mb-8"></div>
@@ -47,7 +48,7 @@ const About = () => {
               </p>
             </div>
           </div>
-          
+          {/*About me photo + education*/}
           <div className="reveal from-right">
             <div className="relative">
               <img

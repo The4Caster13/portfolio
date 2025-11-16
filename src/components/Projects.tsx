@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-//assets
+//snowboard assets
 import initial from "../Assets/Assets/snowboard/initialplans.jpg";
 import video from "../Assets/Assets/snowboard/creativetimelapse.mp4";
 //cpt
@@ -15,8 +15,9 @@ import line from "../Assets/Assets/cpt/line.jpg";
 import sketch from "../Assets/Assets/cpt/sketch.jpg";
 
 import ProjectCard from './ProjectCard';
-
+  //individual projects still have weeks before they are ready and im gonna overhaul this part
 export const projectsData = [
+  //snowboard cas project
   {
     image: initial,
     title: "Snowboard Launcher",
@@ -33,6 +34,7 @@ export const projectsData = [
       "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"
     ]
   },
+  // grade 10 cpt
   {
     image: drawing,
     title: "Bayside Mansion",
@@ -44,6 +46,7 @@ export const projectsData = [
     ai, concept, drawing, plan1, plan2, plan3, plan4, line, sketch 
     ]
   },
+  //3 different road reconstructions
   {
     image: "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=1774&auto=format&fit=crop&ixlib=rb-4.0.3",
     title: "Road Reconstruction",
@@ -58,6 +61,7 @@ export const projectsData = [
       "https://images.unsplash.com/photo-1480074554298-5c5bb7b0e9fd?q=80&w=1774&auto=format&fit=crop&ixlib=rb-4.0.3"
     ]
   },
+  //placeholder
   {
     image: "",
     title: "Modern Estate",
@@ -72,6 +76,7 @@ export const projectsData = [
       "https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"
     ]
   },
+  //placeholder
   {
     image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
     title: "Coastal Modern",
@@ -86,6 +91,7 @@ export const projectsData = [
       "https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"
     ]
   },
+  //placeholder
   {
     image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
     title: "Industrial Loft",

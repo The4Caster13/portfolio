@@ -33,7 +33,7 @@ const PhotoDetail = () => {
           </p>
         </div>
 
-        {/* Hero Image Carousel Section */}
+        {/* carousel image rotation */}
         <div className="relative w-full h-[80vh]">
           <Carousel className="w-full h-full">
             <CarouselContent className="h-[80vh]">
@@ -44,7 +44,7 @@ const PhotoDetail = () => {
                     alt={`${photo.title} - View ${index + 1}`}
                     className="w-full h-full object-cover"
                   />
-                  {/* Overlay text on first image only */}
+                  {/* text overlay */}
                   {index === 0 && (
                     <div className="absolute inset-0 flex flex-col justify-end p-8 md:p-16 bg-gradient-to-t from-black/60 via-black/20 to-transparent">
                       <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
@@ -63,7 +63,7 @@ const PhotoDetail = () => {
           </Carousel>
         </div>
 
-        {/* Content Section */}
+        {/* project detail */}
         <div className="container px-6 md:px-12 py-16">
           <div className="max-w-4xl mx-auto">
             <div className="mb-12">

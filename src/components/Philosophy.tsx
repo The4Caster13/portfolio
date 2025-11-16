@@ -1,6 +1,6 @@
 
 import React, { useEffect, useRef } from 'react';
-
+  {/* my bs design philosophy, if i ever want to change it lowk write it in a doc then paste it in, writing things in vs code is the horrible */}
 const philosophyPoints = [
   {
     number: "01",
@@ -56,7 +56,7 @@ const Philosophy = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Philosophy</h2>
           <div className="w-24 h-1 bg-gray-900"></div>
         </div>
-        
+          {/* quote place (dont think i ever have to change this) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           {philosophyPoints.map((point, index) => (
             <div key={index} className="reveal from-bottom">

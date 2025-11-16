@@ -86,7 +86,7 @@ const RecentWorkDetail = () => {
     load();
   }, [photo, images]);
 
-  // Track which slide is active
+  // track which slide is active
   useEffect(() => {
     if (!embla) return;
 
@@ -107,14 +107,14 @@ const RecentWorkDetail = () => {
         className="min-h-screen transition-colors duration-700"
         style={{ backgroundColor: bgColor }}
       >
-        {/* Header */}
+        {/* header */}
         <div className="pt-24 pb-6 container px-6 md:px-12">
           <p className="text-sm text-white/80">
             {photo.location} • {photo.year}
           </p>
         </div>
 
-        {/* Carousel */}
+        {/* carousel */}
         <div className="relative w-full h-[80vh] flex items-center justify-center">
           <Carousel className="w-full h-full" opts={{ loop: true }} setApi={setEmbla}>
             <CarouselContent className="h-[80vh]">
@@ -142,7 +142,7 @@ const RecentWorkDetail = () => {
                       `}
                     />
 
-                    {/* CAPTION — Always visible */}
+                    {/* captions */}
                     <div
                       className={`
                         absolute bottom-6 left-1/2 -translate-x-1/2
@@ -165,7 +165,7 @@ const RecentWorkDetail = () => {
           </Carousel>
         </div>
 
-        {/* PROJECT DETAILS — with backdrop overlay for readability */}
+        {/* projcet details  */}
         <div className="relative mt-16">
           {/* readability overlay */}
           <div className="absolute inset-0 bg-black/35 backdrop-blur-sm"></div>

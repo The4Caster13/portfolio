@@ -26,7 +26,7 @@ const RecentWork = () => {
 
       <main className="relative min-h-screen bg-background pt-24 pb-16 overflow-hidden">
 
-        {/* ░░░ BACKGROUND PATTERN LAYERS ░░░ */}
+        {/* background pattern */}
         <div className="absolute inset-0 opacity-[0.07] pointer-events-none">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -45,7 +45,7 @@ const RecentWork = () => {
           </svg>
         </div>
 
-        {/* Decorative Leaves */}
+        {/* decoration */}
         <div className="absolute top-16 left-10 opacity-10">
           <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
             <path d="M30 5C35 15 45 25 30 55C15 25 25 15 30 5Z" fill="#1b1b1b" />
@@ -59,14 +59,14 @@ const RecentWork = () => {
           </svg>
         </div>
 
-        {/* ░░░ PAGE CONTENT ░░░ */}
+        {/* general page layout and content */}
         <div className="container px-6 md:px-12 relative z-10">
-          {/* Title */}
+          {/* title */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight">PHOTOGRAPHY</h1>
           </div>
 
-          {/* Masonry Grid */}
+          {/* grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 auto-rows-[300px]">
             {masonryItems.map((item, index) => (
               <div
@@ -82,7 +82,7 @@ const RecentWork = () => {
                   />
                 </div>
 
-                {/* Hover Overlay */}
+                {/* hover overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                     <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
