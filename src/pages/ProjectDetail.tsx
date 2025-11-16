@@ -43,61 +43,7 @@ const ProjectDetail = () => {
     { id: 3, x: 45, y: 70, label: "Landscaping", description: "Native plant integration" }
   ]);
 
-  // progression stages data / need to separate this from each project to give me more freedom (mark can u do this)
-  const progressionStages = [
-    {
-      stage: "Sketch",
-      title: "Initial Concept",
-      description: "Hand-drawn sketches exploring form and spatial relationships",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=400&auto=format&fit=crop",
-      icon: "✏️",
-      details: {
-        process: "The design journey begins with freehand sketches that capture the initial vision and spatial concepts. These early drawings explore the relationship between form, function, and site context.",
-        tools: ["Pencil and paper", "Concept sketching", "Site analysis", "Program development"],
-        timeline: "Week 1-2",
-        deliverables: ["Concept sketches", "Site analysis diagrams", "Spatial relationship studies", "Initial design intent"]
-      }
-    },
-    {
-      stage: "Design",
-      title: "Technical Drawing",
-      description: "Precise computer-aided design with measurements and specifications",
-      image: plans,
-      icon: "📐",
-      details: {
-        process: "Converting conceptual sketches into precise technical drawings using CAD software. This phase focuses on accurate dimensions, structural elements, and building systems integration.",
-        tools: ["AutoCAD", "Revit", "Technical drawing standards", "Building codes compliance"],
-        timeline: "Week 3-8",
-        deliverables: ["Floor plans", "Elevations", "Sections", "Construction details", "Technical specifications"]
-      }
-    },
-    {
-      stage: "Render",
-      title: "3D Visualization",
-      description: "Photorealistic rendering showing materials and lighting",
-      image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?q=80&w=400&auto=format&fit=crop",
-      icon: "🎨",
-      details: {
-        process: "Creating photorealistic 3D visualizations that help clients understand the final design. This phase includes material selection, lighting studies, and atmospheric rendering.",
-        tools: ["3ds Max", "V-Ray", "Lumion", "Material libraries", "Lighting simulation"],
-        timeline: "Week 9-12",
-        deliverables: ["3D renderings", "Material boards", "Lighting studies", "Virtual walkthroughs", "Design presentations"]
-      }
-    },
-    {
-      stage: "Real Photo",
-      title: "Built Reality",
-      description: "The final constructed project in its environment",
-      image: snow,
-      icon: "📸",
-      details: {
-        process: "The culmination of the design process - the actual constructed building. This phase involves construction administration, quality control, and final documentation of the completed project.",
-        tools: ["Construction management", "Quality control", "Site supervision", "Professional photography"],
-        timeline: "Month 4-18",
-        deliverables: ["Completed building", "As-built drawings", "Project photography", "Performance evaluation", "Client handover"]
-      }
-    }
-  ];
+  const progressionStages = project.progressionStages || [];
 
   // clicking on a magnifying point
   const handlePointClick = (pointId: number) => {
