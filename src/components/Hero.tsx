@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-import hero from "../assets/Assets/corb.jpg";
+import hero from "../Assets/Assets/corb.jpg";
 
 
 const Hero = () => {
