@@ -69,6 +69,7 @@ export const projectsData = [
     year: "2023",
     location: "Beverly Hills, CA",
     featured: false,
+    construction: true, 
     images: [
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
       "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
@@ -84,6 +85,7 @@ export const projectsData = [
     year: "2022",
     location: "Miami Beach, FL",
     featured: false,
+    construction: true, 
     images: [
       "https://images.unsplash.com/photo-1568605114967-8130f3a36994?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
       "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
@@ -99,6 +101,7 @@ export const projectsData = [
     year: "2021",
     location: "Chicago, IL",
     featured: false,
+    construction: true, 
     images: [
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
       "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",

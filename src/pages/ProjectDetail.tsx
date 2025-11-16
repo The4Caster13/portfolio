@@ -5,34 +5,42 @@ import Footer from '@/components/Footer';
 import { projectsData } from '@/components/Projects';
 import plans from "../Assets/Assets/snowboard/initialplans.jpg";
 import snow from "../Assets/Assets/snowboard/snow.jpg";
+import Construction from "./construction";
 
 const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
+  // zoom + dragging state
   const [selectedZoom, setSelectedZoom] = useState<number | null>(null);
   const [selectedStage, setSelectedStage] = useState<number | null>(null);
   const [isDragging, setIsDragging] = useState<number | null>(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const imageRef = useRef<HTMLDivElement>(null);
-  
-  // find project id
+
+  // get project
   const projectIndex = Number(id);
   const project = projectsData[projectIndex];
-  
-  // redirect home if the page is nonexistent
+
+  // redirect home if project doesn't exist
   useEffect(() => {
     if (!project) {
       navigate('/');
     }
   }, [project, navigate]);
-  
+
   if (!project) return null;
 
-  // interactive points on the image 
+  // redirects to construction
+  if (project.construction) {
+    return <Construction project={project} />;
+  }
+
+  // interactive points on the image (drag + zoom) 
   const [interactivePoints, setInteractivePoints] = useState([
     { id: 1, x: 25, y: 30, label: "Exterior Detail", description: "Modern facade with sustainable materials" },
     { id: 2, x: 65, y: 45, label: "Window Design", description: "Energy-efficient glazing system" },
-    { id: 3, x: 45, y: 70, label: "Landscaping", description: "Native plant integration" },
+    { id: 3, x: 45, y: 70, label: "Landscaping", description: "Native plant integration" }
   ]);
 
   // progression stages data / need to separate this from each project to give me more freedom (mark can u do this)
@@ -91,25 +99,26 @@ const ProjectDetail = () => {
     }
   ];
 
+  // clicking on a magnifying point
   const handlePointClick = (pointId: number) => {
-    if (isDragging === pointId) return; // Don't toggle zoom 
-    console.log('Point clicked:', pointId);
+    if (isDragging === pointId) return; 
     setSelectedZoom(selectedZoom === pointId ? null : pointId);
   };
 
+  // dragging logic
   const handleMouseDown = (e: React.MouseEvent, pointId: number) => {
     e.preventDefault();
     setIsDragging(pointId);
-    
+
     const rect = imageRef.current?.getBoundingClientRect();
     if (!rect) return;
-    
+
     const point = interactivePoints.find(p => p.id === pointId);
     if (!point) return;
-    
+
     const pointX = (point.x / 100) * rect.width + rect.left;
     const pointY = (point.y / 100) * rect.height + rect.top;
-    
+
     setDragOffset({
       x: e.clientX - pointX,
       y: e.clientY - pointY
@@ -118,20 +127,19 @@ const ProjectDetail = () => {
 
   const handleMouseMove = (e: MouseEvent) => {
     if (isDragging === null) return;
-    
+
     const rect = imageRef.current?.getBoundingClientRect();
     if (!rect) return;
-    
+
     const newX = ((e.clientX - dragOffset.x - rect.left) / rect.width) * 100;
     const newY = ((e.clientY - dragOffset.y - rect.top) / rect.height) * 100;
-    
-    // constraint to image boundaries (might need to replace)
+
     const constrainedX = Math.max(5, Math.min(95, newX));
     const constrainedY = Math.max(5, Math.min(95, newY));
-    
-    setInteractivePoints(prev => 
-      prev.map(point => 
-        point.id === isDragging 
+
+    setInteractivePoints(prev =>
+      prev.map(point =>
+        point.id === isDragging
           ? { ...point, x: constrainedX, y: constrainedY }
           : point
       )
@@ -146,7 +154,6 @@ const ProjectDetail = () => {
     if (isDragging !== null) {
       document.addEventListener('mousemove', handleMouseMove);
       document.addEventListener('mouseup', handleMouseUp);
-      
       return () => {
         document.removeEventListener('mousemove', handleMouseMove);
         document.removeEventListener('mouseup', handleMouseUp);
@@ -154,16 +161,17 @@ const ProjectDetail = () => {
     }
   }, [isDragging, dragOffset]);
 
+  // selecting a design progression stage
   const handleStageClick = (stageIndex: number) => {
-    console.log('Stage clicked:', stageIndex);
     setSelectedStage(selectedStage === stageIndex ? null : stageIndex);
   };
-  
+
   return (
     <>
       <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 relative overflow-hidden">
-        {/* Background texture */}
+
+        {/* background */}
         <div className="absolute inset-0 opacity-10">
           <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
@@ -201,6 +209,7 @@ const ProjectDetail = () => {
           </svg>
         </div>
 
+        {/* vines bottom-right */}
         <div className="absolute bottom-0 right-0 opacity-15">
           <svg width="300" height="300" viewBox="0 0 300 300" fill="none">
             <path d="M150 300L150 200L100 150L50 100" stroke="#2E7D32" strokeWidth="3"/>
@@ -211,6 +220,7 @@ const ProjectDetail = () => {
         </div>
 
         <div className="container px-6 md:px-12 py-24 relative z-10">
+          {/* back button */}
           <button 
             onClick={() => navigate('/')}
             className="flex items-center mb-8 text-sm font-medium text-charcoal hover:text-forest-green transition-colors"
@@ -220,8 +230,8 @@ const ProjectDetail = () => {
             </svg>
             Back to projects
           </button>
-          
-          {/* magnifying glass */}
+
+          {/* interactive points code, lowk need to make it so they have different definitions based on where i place them */}
           <div className="mb-12">
             <div 
               ref={imageRef}
@@ -233,17 +243,17 @@ const ProjectDetail = () => {
                 className="w-full h-full object-cover"
                 style={{ pointerEvents: 'none' }}
               />
-              
+
               {interactivePoints.map((point) => (
                 <div
                   key={point.id}
                   className={`absolute transition-all duration-300 z-20 ${
                     isDragging === point.id ? 'cursor-grabbing' : 'cursor-grab'
                   }`}
-                  style={{ 
-                    left: `${point.x}%`, 
-                    top: `${point.y}%`, 
-                    transform: 'translate(-50%, -50%)' 
+                  style={{
+                    left: `${point.x}%`,
+                    top: `${point.y}%`,
+                    transform: 'translate(-50%, -50%)'
                   }}
                   onMouseDown={(e) => handleMouseDown(e, point.id)}
                   onClick={() => handlePointClick(point.id)}
@@ -251,19 +261,16 @@ const ProjectDetail = () => {
                   {selectedZoom === point.id ? (
                     /* react magnifying code (lowk this has to change cause it barely works rn) */
                     <div className="relative w-32 h-32">
-                      {/* the thing being magnified (takes the background and zooms)  */}
-                      <div 
+                      <div
                         className="absolute inset-0 rounded-full overflow-hidden border-4 border-forest-green shadow-2xl"
                         style={{
                           background: `url(${project.image})`,
-                          backgroundSize: '300%', // zoom amount
+                          backgroundSize: '300%',
                           backgroundPosition: `${point.x}% ${point.y}%`,
                           backgroundRepeat: 'no-repeat'
                         }}
                       />
-                      {/* glass */}
                       <div className="absolute inset-0 rounded-full border-4 border-forest-green bg-transparent"></div>
-                      {/* handle */}
                       <div className="absolute -bottom-2 -right-2 w-6 h-6 bg-forest-green rounded-full shadow-lg"></div>
                       <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-white rounded-full"></div>
                     </div>
@@ -272,7 +279,7 @@ const ProjectDetail = () => {
                       <div className="w-full h-full rounded-full bg-forest-green/30 hover:bg-forest-green/40 transition-all duration-300"></div>
                     </div>
                   )}
-                  
+
                   {selectedZoom !== point.id && isDragging !== point.id && (
                     <div className="absolute top-10 left-1/2 transform -translate-x-1/2 opacity-0 hover:opacity-100 transition-opacity duration-200 bg-charcoal text-white text-xs px-3 py-2 rounded-lg whitespace-nowrap z-30 pointer-events-none">
                       {point.label}
@@ -281,12 +288,12 @@ const ProjectDetail = () => {
                   )}
                 </div>
               ))}
-              
+
               {/* gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-tr from-forest-green/10 via-transparent to-sky-blue/10 pointer-events-none"></div>
             </div>
-            
-            {/* zoom */}
+
+            {/* zoom popup text */}
             {selectedZoom && (
               <div className="mt-6 p-6 bg-off-white/90 backdrop-blur-sm rounded-lg border border-sage/20 shadow-lg">
                 <div className="flex items-center justify-between mb-3">
@@ -309,12 +316,12 @@ const ProjectDetail = () => {
             )}
           </div>
 
-          {/* design progression section (deattach this from general to specific projects to make it more personal (ASAP CHANGE)) */}
+          {/* change ts its acc so bad, its the same for all the projects its acc horrible */}
           <div className="mb-12">
             <div className="bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
               <h3 className="text-2xl font-bold mb-6 text-forest-green">Design Progression</h3>
               <p className="text-charcoal/70 mb-8">Follow the evolution of this project from initial concept to built reality</p>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {progressionStages.map((stage, index) => (
                   <div key={stage.stage} className="relative">
@@ -323,7 +330,7 @@ const ProjectDetail = () => {
                         <div className="absolute right-0 top-1/2 transform translate-x-1 -translate-y-1/2 w-2 h-2 bg-sage rounded-full"></div>
                       </div>
                     )}
-                    
+
                     <button
                       onClick={() => handleStageClick(index)}
                       className={`w-full bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 ${
@@ -378,9 +385,9 @@ const ProjectDetail = () => {
                       </svg>
                     </button>
                   </div>
-                  
+
                   <p className="text-charcoal/80 mb-6">{progressionStages[selectedStage].details.process}</p>
-                  
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                       <h5 className="font-semibold text-forest-green mb-3">Tools & Methods</h5>
@@ -409,8 +416,8 @@ const ProjectDetail = () => {
               )}
             </div>
           </div>
-          
-          {/* below progression project details (separate from projects/ lowk this changes the entire react code so this comment is basically useless) */}
+
+          {/* project details text */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
               <div className="border-b border-sage pb-2 mb-6">
@@ -419,11 +426,11 @@ const ProjectDetail = () => {
               <h1 className="text-3xl md:text-4xl font-bold mb-6 text-forest-green">{project.title}</h1>
               <p className="text-charcoal/80 text-lg mb-8">{project.description}</p>
             </div>
-            
+
             <div className="bg-off-white/80 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-sage/20">
               <h3 className="text-xl font-semibold mb-4 text-forest-green">Project Details</h3>
               <p className="text-charcoal/70 mb-6">This {project.title.toLowerCase()} project showcases our commitment to blending form and function. The design emphasizes natural light, sustainable materials, and harmonious integration with the surrounding environment.</p>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-sage/10 p-4 rounded-lg">
                   <h4 className="font-medium text-forest-green">Client</h4>
@@ -444,6 +451,7 @@ const ProjectDetail = () => {
               </div>
             </div>
           </div>
+
         </div>
       </div>
       <Footer />
