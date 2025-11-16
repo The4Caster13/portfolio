@@ -235,12 +235,12 @@ const ProjectDetail = () => {
           <div className="mb-12">
             <div 
               ref={imageRef}
-              className="relative aspect-[21/9] overflow-hidden bg-off-white shadow-2xl rounded-lg border border-sage/20"
+              className="relative w-full overflow-hidden bg-off-white shadow-2xl rounded-lg border border-sage/20"
             >
               <img 
                 src={project.image} 
                 alt={project.title}
-                className="w-full h-full object-cover"
+                className="w-full object-contain"
                 style={{ pointerEvents: 'none' }}
               />
 
