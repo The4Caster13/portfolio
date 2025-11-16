@@ -28,7 +28,7 @@ export const projectsData = [
     media: video, 
     type: "video", 
     images: [
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
+      initial,
       "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
       "https://images.unsplash.com/photo-1600585152915-d208bec867a1?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3",
       "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3"

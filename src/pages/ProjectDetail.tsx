@@ -11,6 +11,11 @@ const ProjectDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
+  // CAROUSEL LOGIC START
+  // 1. State to track the currently displayed image index
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  // CAROUSEL LOGIC END
+
   // zoom + dragging state
   const [selectedZoom, setSelectedZoom] = useState<number | null>(null);
   const [selectedStage, setSelectedStage] = useState<number | null>(null);
@@ -27,6 +32,10 @@ const ProjectDetail = () => {
     if (!project) {
       navigate('/');
     }
+    // CAROUSEL LOGIC START
+    // Reset index whenever the component loads or the project changes
+    setCurrentImageIndex(0);
+    // CAROUSEL LOGIC END
   }, [project, navigate]);
 
   if (!project) return null;
@@ -35,6 +44,29 @@ const ProjectDetail = () => {
   if (project.construction) {
     return <Construction project={project} />;
   }
+  
+  // CAROUSEL LOGIC START
+  // 2. Determine the images array, using project.image as a fallback for the first slide
+  const images = project.images && project.images.length > 0
+    ? project.images
+    : [project.image]; 
+  
+  // 3. Carousel Navigation Handlers
+  const goToNext = () => {
+    setCurrentImageIndex((prevIndex) => 
+      (prevIndex + 1) % images.length
+    );
+  };
+
+  const goToPrev = () => {
+    setCurrentImageIndex((prevIndex) => 
+      (prevIndex - 1 + images.length) % images.length
+    );
+  };
+
+  // Get the current image URL for display
+  const currentImageUrl = images[currentImageIndex];
+  // CAROUSEL LOGIC END
 
   // interactive points on the image (drag + zoom) 
   const [interactivePoints, setInteractivePoints] = useState([
@@ -181,14 +213,41 @@ const ProjectDetail = () => {
           <div className="mb-12">
             <div 
               ref={imageRef}
-              className="relative w-full overflow-hidden bg-off-white shadow-2xl rounded-lg border border-sage/20"
+              // CAROUSEL LOGIC: Add 'group' class to enable hover effects on navigation buttons
+              className="relative w-full overflow-hidden bg-off-white shadow-2xl rounded-lg border border-sage/20 group" 
             >
+              {/* CAROUSEL LOGIC: Update image src to use the currentImageUrl */}
               <img 
-                src={project.image} 
-                alt={project.title}
+                src={currentImageUrl} 
+                alt={`${project.title} image ${currentImageIndex + 1}`}
                 className="w-full object-contain"
                 style={{ pointerEvents: 'none' }}
               />
+              
+              {/* CAROUSEL LOGIC START: Navigation Arrows (show only if multiple images exist) */}
+              {images.length > 1 && (
+                <>
+                  {/* Previous Button */}
+                  <button
+                    onClick={goToPrev}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full bg-white/70 text-gray-800 shadow-lg hover:bg-white transition-all opacity-0 group-hover:opacity-100 duration-300 z-30"
+                    aria-label="Previous image"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                  </button>
+
+                  {/* Next Button */}
+                  <button
+                    onClick={goToNext}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 p-3 rounded-full bg-white/70 text-gray-800 shadow-lg hover:bg-white transition-all opacity-0 group-hover:opacity-100 duration-300 z-30"
+                    aria-label="Next image"
+                  >
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
+                </>
+              )}
+              {/* CAROUSEL LOGIC END: Navigation Arrows */}
+
 
               {interactivePoints.map((point) => (
                 <div
@@ -210,7 +269,8 @@ const ProjectDetail = () => {
                       <div
                         className="absolute inset-0 rounded-full overflow-hidden border-4 border-forest-green shadow-2xl"
                         style={{
-                          background: `url(${project.image})`,
+                          // CAROUSEL LOGIC: Use currentImageUrl for the magnifier background
+                          background: `url(${currentImageUrl})`,
                           backgroundSize: '300%',
                           backgroundPosition: `${point.x}% ${point.y}%`,
                           backgroundRepeat: 'no-repeat'
@@ -235,6 +295,25 @@ const ProjectDetail = () => {
                 </div>
               ))}
 
+              {/* CAROUSEL LOGIC START: Dot Indicators */}
+              {images.length > 1 && (
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-30">
+                  {images.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentImageIndex(index)}
+                      className={`h-2 rounded-full transition-all duration-300 ${
+                        index === currentImageIndex 
+                          ? 'w-6 bg-forest-green shadow-md' 
+                          : 'w-2 bg-white/70 hover:bg-white'
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              )}
+              {/* CAROUSEL LOGIC END: Dot Indicators */}
+              
               {/* gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-tr from-forest-green/10 via-transparent to-sky-blue/10 pointer-events-none"></div>
             </div>
