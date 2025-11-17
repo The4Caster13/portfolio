@@ -51,7 +51,7 @@ import man from "../Assets/Assets/ottawa/man.jpg";
 import road from "../Assets/Assets/ottawa/road.jpg";
 import stop from "../Assets/Assets/ottawa/stop.jpg";
 
-export const recentWorkData = [
+export const photoData = [
   //picture gallery (basically copy and paste)
   {
     image: title,

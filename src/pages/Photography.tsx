@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { recentWorkData } from "@/data/recentWorkData";
+import { photoData } from "@/data/photoData";
 
-const RecentWork = () => {
+const Photography = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -12,12 +12,12 @@ const RecentWork = () => {
   }, []);
 
   const masonryItems = [
-    { ...recentWorkData[0], gridClass: "md:col-span-1 md:row-span-1" },
-    { ...recentWorkData[1], gridClass: "md:col-span-1 md:row-span-2" },
-    { ...recentWorkData[2], gridClass: "md:col-span-1 md:row-span-1" },
-    { ...recentWorkData[3], gridClass: "md:col-span-1 md:row-span-2" },
-    { ...recentWorkData[4], gridClass: "md:col-span-1 md:row-span-1" },
-    { ...recentWorkData[5], gridClass: "md:col-span-1 md:row-span-2" },
+    { ...photoData[0], gridClass: "md:col-span-1 md:row-span-1" },
+    { ...photoData[1], gridClass: "md:col-span-1 md:row-span-2" },
+    { ...photoData[2], gridClass: "md:col-span-1 md:row-span-1" },
+    { ...photoData[3], gridClass: "md:col-span-1 md:row-span-2" },
+    { ...photoData[4], gridClass: "md:col-span-1 md:row-span-1" },
+    { ...photoData[5], gridClass: "md:col-span-1 md:row-span-2" },
   ];
 
   return (
@@ -102,4 +102,4 @@ const RecentWork = () => {
   );
 };
 
-export default RecentWork;
+export default Photography;

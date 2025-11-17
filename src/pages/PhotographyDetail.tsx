@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { recentWorkData } from "@/data/recentWorkData";
+import { photoData } from "@/data/photoData";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -12,12 +12,12 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-const RecentWorkDetail = () => {
+const PhotographyDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const photoIndex = parseInt(id || "0");
-  const photo = recentWorkData[photoIndex % recentWorkData.length];
+  const photo = photoData[photoIndex % photoData.length];
 
   // Tell TS what each image looks like
   const images = photo.images as { src: string; caption: string }[];
@@ -205,4 +205,4 @@ const RecentWorkDetail = () => {
   );
 };
 
-export default RecentWorkDetail;
+export default PhotographyDetail;

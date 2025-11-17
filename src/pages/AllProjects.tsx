@@ -27,12 +27,10 @@ const AllProjects = () => {
                 <circle cx="120" cy="120" r="80" fill="none" stroke="#1b1b1b" strokeWidth="0.5" />
                 <circle cx="120" cy="120" r="120" fill="none" stroke="#1b1b1b" strokeWidth="0.5" />
               </pattern>
-
               <pattern id="waves" x="0" y="0" width="260" height="120" patternUnits="userSpaceOnUse">
                 <path d="M0 60 Q60 0 130 60 T260 60" fill="none" stroke="#1b1b1b" strokeWidth="0.6" />
               </pattern>
             </defs>
-
             <rect width="100%" height="100%" fill="url(#rings)" />
             <rect width="100%" height="100%" fill="url(#waves)" />
           </svg>
@@ -45,7 +43,6 @@ const AllProjects = () => {
             <path d="M30 5V55" stroke="#1b1b1b" strokeWidth="1.5" />
           </svg>
         </div>
-
         <div className="absolute bottom-20 right-10 opacity-10 rotate-45">
           <svg width="50" height="50" viewBox="0 0 60 60" fill="none">
             <path d="M30 5C35 15 45 25 30 55C15 25 25 15 30 5Z" fill="#1b1b1b" />
@@ -55,7 +52,7 @@ const AllProjects = () => {
         {/* page content */}
         <div className="container px-6 md:px-12 relative z-10">
 
-          {/* Title */}
+          {/* title */}
           <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
               ALL PROJECTS
@@ -65,7 +62,7 @@ const AllProjects = () => {
             </p>
           </div>
 
-          {/* Projects Grid */}
+          {/* projects grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projectsData.map((project, index) => (
               <div
