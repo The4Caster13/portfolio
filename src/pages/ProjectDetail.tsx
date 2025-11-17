@@ -3,9 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Construction from "./construction";
-//connect to the new project file to fix my string problems
 import { projectsData } from "@/components/Projects";
 import type { MediaItem } from "@/components/Projects";
+import STLViewer from "@/components/STLViewer";
 
 interface ProgressionStage {
   stage: string;
@@ -41,11 +41,7 @@ const ProjectDetail = () => {
   const project: Project | undefined = projectsData[projectIndex];
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [selectedZoom, setSelectedZoom] = useState<number | null>(null);
   const [selectedStage, setSelectedStage] = useState<number | null>(null);
-
-  const [draggingPoint, setDraggingPoint] = useState<number | null>(null);
-  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
 
   const imageRef = useRef<HTMLDivElement>(null);
 
@@ -74,90 +70,6 @@ const ProjectDetail = () => {
   const goPrev = () =>
     setCurrentImageIndex((i) => (i - 1 + media.length) % media.length);
 
- //interactive points (get rid of from here)
-  const [points, setPoints] = useState([
-    {
-      id: 1,
-      x: 25,
-      y: 30,
-      label: "Exterior Detail",
-      description: "Modern facade using sustainable materials",
-    },
-    {
-      id: 2,
-      x: 60,
-      y: 45,
-      label: "Window System",
-      description: "High-efficiency glass and thermal performance",
-    },
-    {
-      id: 3,
-      x: 45,
-      y: 70,
-      label: "Landscaping",
-      description: "Native plants integrated into the design",
-    },
-  ]);
-
-  const handleMouseDown = (e: React.MouseEvent, id: number) => {
-    e.preventDefault();
-    setDraggingPoint(id);
-
-    const rect = imageRef.current?.getBoundingClientRect();
-    if (!rect) return;
-
-    const point = points.find((p) => p.id === id);
-    if (!point) return;
-
-    const realX = (point.x / 100) * rect.width + rect.left;
-    const realY = (point.y / 100) * rect.height + rect.top;
-
-    setDragOffset({
-      x: e.clientX - realX,
-      y: e.clientY - realY,
-    });
-  };
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (draggingPoint === null) return;
-
-    const rect = imageRef.current?.getBoundingClientRect();
-    if (!rect) return;
-
-    const newX =
-      ((e.clientX - dragOffset.x - rect.left) / rect.width) * 100;
-    const newY =
-      ((e.clientY - dragOffset.y - rect.top) / rect.height) * 100;
-
-    setPoints((prev) =>
-      prev.map((p) =>
-        p.id === draggingPoint
-          ? {
-              ...p,
-              x: Math.max(5, Math.min(95, newX)),
-              y: Math.max(5, Math.min(95, newY)),
-            }
-          : p
-      )
-    );
-  };
-
-  const handleMouseUp = () => {
-    setDraggingPoint(null);
-  };
-
-  useEffect(() => {
-    if (draggingPoint !== null) {
-      document.addEventListener("mousemove", handleMouseMove);
-      document.addEventListener("mouseup", handleMouseUp);
-
-      return () => {
-        document.removeEventListener("mousemove", handleMouseMove);
-        document.removeEventListener("mouseup", handleMouseUp);
-      };
-    }
-  }, [draggingPoint, dragOffset]);
-
   const stages = project.progressionStages ?? [];
 
   return (
@@ -178,7 +90,7 @@ const ProjectDetail = () => {
             ref={imageRef}
             className="relative w-full overflow-hidden rounded-xl shadow-lg bg-white group mb-12"
           >
-            {currentMedia.type === "video" ? (
+            {currentMedia.type === "video" && (
               <video
                 src={currentMedia.url}
                 controls
@@ -187,11 +99,17 @@ const ProjectDetail = () => {
                 muted
                 className="w-full object-contain"
               />
-            ) : (
+            )}
+
+            {currentMedia.type === "image" && (
               <img
                 src={currentMedia.url}
                 className="w-full object-contain"
               />
+            )}
+
+            {currentMedia.type === "model" && (
+              <STLViewer url={currentMedia.url} />
             )}
 
             {/* arrow buttons */}
@@ -211,35 +129,7 @@ const ProjectDetail = () => {
                 </button>
               </>
             )}
-
-            {/* interactive points (might remove) */}
-            {currentMedia.type === "image" &&
-              points.map((p) => (
-                <div
-                  key={p.id}
-                  onMouseDown={(e) => handleMouseDown(e, p.id)}
-                  onClick={() => setSelectedZoom(p.id)}
-                  className="absolute w-6 h-6 rounded-full bg-white/70 border shadow cursor-grab"
-                  style={{
-                    left: `${p.x}%`,
-                    top: `${p.y}%`,
-                    transform: "translate(-50%, -50%)",
-                  }}
-                />
-              ))}
           </div>
-
-          {/* details text */}
-          {selectedZoom && (
-            <div className="bg-white shadow p-6 rounded-xl mb-12">
-              <h3 className="text-xl font-semibold text-forest-green">
-                {points.find((p) => p.id === selectedZoom)?.label}
-              </h3>
-              <p className="text-charcoal mt-2">
-                {points.find((p) => p.id === selectedZoom)?.description}
-              </p>
-            </div>
-          )}
 
           {/* progress text */}
           <div className="mb-16">

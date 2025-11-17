@@ -16,7 +16,7 @@ type MediaItem =
   | string
   | {
       url: string;
-      type: "image" | "video";
+      type: "image" | "video" | "model";
     };
 
 const PhotoDetail = () => {

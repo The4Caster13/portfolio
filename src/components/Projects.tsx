@@ -3,6 +3,8 @@ import ProjectCard from "./ProjectCard";
 // snowboard assets
 import initial from "../Assets/Assets/snowboard/initialplans.jpg";
 import video from "../Assets/Assets/snowboard/creativetimelapse.mp4";
+import prop from "../Assets/Assets/snowboard/ProperDrawing.jpg";
+import deed from "../Assets/Assets/snowboard/3d.stl";
 // cpt assets
 import ai from "../Assets/Assets/cpt/aiart.jpg";
 import concept from "../Assets/Assets/cpt/concept.jpg";
@@ -13,10 +15,11 @@ import plan3 from "../Assets/Assets/cpt/floorplan3.jpg";
 import plan4 from "../Assets/Assets/cpt/floorplan4.jpg";
 import line from "../Assets/Assets/cpt/line.jpg";
 import sketch from "../Assets/Assets/cpt/sketch.jpg";
+import vid from "../Assets/Assets/cpt/timelapsec.mp4";
 
 export interface MediaItem {
   url: string;
-  type: "image" | "video";
+  type: "image" | "video" | "model";
 }
 const normalizeImages = (arr: (string | MediaItem)[]): MediaItem[] => {
   return arr.map((item) => {
@@ -40,35 +43,7 @@ export const projectsData: {
   progressionStages: any[];
 }[] = [
 
-  // cas project (move lower)
-  {
-    image: initial,
-    title: "Snowboard Launcher",
-    description:
-      "What began as a simple desire to practice snowboard tricks at home evolved into a full architectural exploration...",
-    year: "2024",
-    location: "North York, ON",
-    featured: true,
-
-    images: [
-      { url: initial, type: "image" },
-      { url: video, type: "video" },
-      {
-        url:
-          "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?q=80&w=1770&auto=format&fit=crop",
-        type: "image",
-      },
-      {
-        url:
-          "https://images.unsplash.com/photo-1600585152220-90363fe7e115?q=80&w=1770&auto=format&fit=crop",
-        type: "image",
-      },
-    ],
-
-    progressionStages: [],
-  },
-
-  // grade 10 cpt (move up)
+  // grade 10 cpt 
   {
     image: drawing,
     title: "Bayside Mansion",
@@ -79,21 +54,22 @@ export const projectsData: {
     featured: true,
 
     images: normalizeImages([
-      ai,
-      concept,
       drawing,
+      line,
+      { url: vid, type: "video" },
+      sketch,
       plan1,
       plan2,
       plan3,
       plan4,
-      line,
-      sketch,
+      concept,
+      ai,
     ]),
 
     progressionStages: [],
   },
 
-  // road (move up)
+  // road
   {
     image:
       "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=1774&auto=format&fit=crop",
@@ -110,6 +86,26 @@ export const projectsData: {
       "https://images.unsplash.com/photo-1480074554297-5c5bb7b0e9fc?q=80&w=1774&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1480074554298-5c5bb7b0e9fd?q=80&w=1774&auto=format&fit=crop",
     ]),
+
+    progressionStages: [],
+  },
+
+ // cas project 
+  {
+    image: prop,
+    title: "Snowboard Launcher",
+    description:
+      "What began as a simple desire to practice snowboard tricks at home evolved into a full architectural exploration...",
+    year: "2024",
+    location: "North York, ON",
+    featured: true,
+
+    images: [
+      { url: prop, type: "image" },
+      { url: initial, type: "image" },
+      { url: deed, type: "model" },
+      { url: video, type: "video" },
+    ],
 
     progressionStages: [],
   },

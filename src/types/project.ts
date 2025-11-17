@@ -1,6 +1,6 @@
 export interface MediaItem {
   url: string;
-  type: "image" | "video";
+  type: "image" | "video" |"model";
 }
 //fixes the unorganized string problem 
 export interface ProgressionStage {
