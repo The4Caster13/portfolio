@@ -16,6 +16,14 @@ import plan4 from "../Assets/Assets/cpt/floorplan4.jpg";
 import line from "../Assets/Assets/cpt/line.jpg";
 import sketch from "../Assets/Assets/cpt/sketch.jpg";
 import vid from "../Assets/Assets/cpt/timelapsec.mp4";
+// road
+import original from "../Assets/Assets/road/original.jpg";
+import change from "../Assets/Assets/road/changes.jpg";
+import vid2 from "../Assets/Assets/road/changes.mp4";
+import vid3 from "../Assets/Assets/road/original.mp4";
+// sketchup progression
+import first from "../Assets/Assets/sketchup/house.stl";
+import hero from "../Assets/Assets/sketchup/house.png";
 
 export interface MediaItem {
   url: string;
@@ -71,20 +79,34 @@ export const projectsData: {
 
   // road
   {
-    image:
-      "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=1774&auto=format&fit=crop",
+    image: change,
     title: "Road Reconstruction",
     description:
       "Renovation project that transformed a traditional suburban house into a contemporary living space...",
     year: "2025",
     location: "Toronto, ON",
     featured: true,
-
     images: normalizeImages([
-      "https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?q=80&w=1774&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1480074554294-5c5bb7b0e9fb?q=80&w=1774&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1480074554297-5c5bb7b0e9fc?q=80&w=1774&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1480074554298-5c5bb7b0e9fd?q=80&w=1774&auto=format&fit=crop",
+      { url: change, type: "image" },
+      { url: original, type: "image" },
+      { url: vid2, type: "video" },
+      { url: vid3, type: "video" },
+    ]),
+
+    progressionStages: [],
+  },
+  // sketchup
+  {
+    image: hero,
+    title: "Tiny House",
+    description:
+      "Expansive estate featuring contemporary architecture with panoramic views...",
+    year: "2025",
+    location: "",
+    featured: false,
+    images: normalizeImages([
+      { url: hero, type: "image" },
+      { url: first, type: "model" },
     ]),
 
     progressionStages: [],
@@ -106,27 +128,6 @@ export const projectsData: {
       { url: deed, type: "model" },
       { url: video, type: "video" },
     ],
-
-    progressionStages: [],
-  },
-
-  //tbd (prolly sketchup)
-  {
-    image: "",
-    title: "Modern Estate",
-    description:
-      "Expansive estate featuring contemporary architecture with panoramic views...",
-    year: "2023",
-    location: "Beverly Hills, CA",
-    featured: false,
-    construction: true,
-
-    images: normalizeImages([
-      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1770&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?q=80&w=1770&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1513584684374-8bab748fbf90?q=80&w=1770&auto=format&fit=crop",
-      "https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1770&auto=format&fit=crop",
-    ]),
 
     progressionStages: [],
   },
@@ -200,31 +201,68 @@ const Projects = () => {
   const featured = projectsData.filter((p) => p.featured);
 
   return (
-    <section id="projects" className="py-24 md:py-32">
-      <div className="container px-6 md:px-12">
-        <div ref={titleRef} className="reveal from-bottom mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
-          <div className="w-24 h-1 bg-gray-900"></div>
-        </div>
+  <section id="projects" className="relative py-24 md:py-32 overflow-hidden">
 
-        <div className="space-y-12">
-          {featured.map((project) => {
-            const index = projectsData.findIndex((p) => p === project);
-            return (
-              <ProjectCard
-                key={index}
-                image={project.image}
-                title={project.title}
-                description={project.description}
-                year={project.year}
-                location={project.location}
-                index={index}
-              />
-            );
-          })}
-        </div>
+    {/* background pattern */}
+    <div className="absolute inset-0 opacity-[0.08] pointer-events-none">
+      <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="rings" x="0" y="0" width="240" height="240" patternUnits="userSpaceOnUse">
+            <circle cx="120" cy="120" r="40" fill="none" stroke="#1b1b1b" strokeWidth="0.5" />
+            <circle cx="120" cy="120" r="80" fill="none" stroke="#1b1b1b" strokeWidth="0.5" />
+            <circle cx="120" cy="120" r="120" fill="none" stroke="#1b1b1b" strokeWidth="0.5" />
+          </pattern>
+
+          <pattern id="waves" x="0" y="0" width="260" height="120" patternUnits="userSpaceOnUse">
+            <path d="M0 60 Q60 0 130 60 T260 60" fill="none" stroke="#1b1b1b" strokeWidth="0.6" />
+          </pattern>
+        </defs>
+
+        <rect width="100%" height="100%" fill="url(#rings)" />
+        <rect width="100%" height="100%" fill="url(#waves)" />
+      </svg>
+    </div>
+
+    {/* leaf decorations */}
+    <div className="absolute top-14 left-10 opacity-10">
+      <svg width="65" height="65" viewBox="0 0 60 60" fill="none">
+        <path d="M30 5C35 15 45 25 30 55C15 25 25 15 30 5Z" fill="#1b1b1b" />
+        <path d="M30 5V55" stroke="#1b1b1b" strokeWidth="1.5" />
+      </svg>
+    </div>
+
+    <div className="absolute bottom-20 right-10 opacity-10 rotate-45">
+      <svg width="50" height="50" viewBox="0 0 60 60" fill="none">
+        <path d="M30 5C35 15 45 25 30 55C15 25 25 15 30 5Z" fill="#1b1b1b" />
+      </svg>
+    </div>
+
+    {/* content */}
+    <div className="container px-6 md:px-12">
+      <div ref={titleRef} className="reveal from-bottom mb-20">
+        <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured Projects</h2>
+        <div className="w-24 h-1 bg-gray-900"></div>
       </div>
-    </section>
+
+      <div className="space-y-12">
+        {featured.map((project) => {
+          const index = projectsData.findIndex((p) => p === project);
+          return (
+            <ProjectCard
+              key={index}
+              image={project.image}
+              title={project.title}
+              description={project.description}
+              year={project.year}
+              location={project.location}
+              index={index}
+            />
+          );
+        })}
+      </div>
+    </div>
+    
+  </section>
   );
 };
 
