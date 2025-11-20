@@ -96,13 +96,13 @@ export const photoData = [
     year: "2023–2025",
     location: "Toronto, ON",
     images: [
-      { src: burger, caption: "Dim lights shaping a late-night scene." },
-      { src: car, caption: "A lone car under a tired streetlight." },
-      { src: corvette, caption: "Chrome and colour reflecting the city glow." },
-      { src: markham, caption: "Urban quietness past midnight." },
-      { src: miata, caption: "Headlights slicing through the dark." },
-      { src: sign, caption: "A neon sign painting the street with colour." },
-      { src: train, caption: "Metal, motion, and the cold blue of night transit." }
+      { src: burger, caption: "This image was composed with balance in mind. I used the white car to reflect available light and the storefront as a fixed background to anchor the scene. My goal was to see if I could expose both the building and the car without blowing out either element. The result taught me how to manage highlights more carefully." },
+      { src: car, caption: "I positioned this car to catch just enough ambient light to highlight its curves and textures. My goal was to use the environment as a light source rather than rely on flash. The darkness surrounding the car helped emphasize its form and created a quiet, cinematic feeling." },
+      { src: corvette, caption: "I positioned the car at the edge of the frame to emphasize motion and suspense. The overhead lights were used to draw the eye toward the vanishing point in the distance. I chose this location to test how reflective surfaces and empty space could work together to create a sense of quiet tension. The contrast between the taillights and the surrounding blue shadows helped define the mood I wanted." },
+      { src: markham, caption: "I took this shot to test how isolated signage could become the focal point in an otherwise empty scene. The structure was intentionally framed to show symmetry while the dark surroundings were used to keep the viewer’s focus on the light. My goal was to create a quiet, almost eerie urban atmosphere." },
+      { src: miata, caption: "I selected this subject because of its color. I wanted to see how red would behave under weak ambient lighting. The background was chosen to create a mirrored glow, giving the photo a soft but deliberate pop of color. My focus here was experimenting with how hue interacts with darkness." },
+      { src: sign, caption: "I designed this shot around the contrast between harsh artificial light and surrounding darkness. Placing the subject beneath the brightest point emphasized isolation. The 'Yield' sign above was chosen intentionally to add symbolic tension. This image allowed me to explore how light and spatial balance could create a story." },
+      { src: train, caption: "I planned this shot to explore depth through perspective. The yellow line and repeating lights drew the viewer’s eye down the track. I chose this location to test how minimal lighting could still build narrative. The mood I was aiming for was quiet, distant, and reflective." }
     ]
   },
 
@@ -114,12 +114,12 @@ export const photoData = [
     year: "2022",
     location: "New York, NY",
     images: [
-      { src: blur, caption: "A soft blur — an early experiment in motion." },
-      { src: gold, caption: "Warm tones highlighting small urban details." },
-      { src: moving, caption: "Rushing movement, imperfect but full of energy." },
-      { src: night, caption: "A first attempt at capturing city nightlife." },
-      { src: sky, caption: "Looking upward, unsure but curious." },
-      { src: soho, caption: "Textures of SoHo captured in a beginner’s frame." }
+      { src: blur, caption: "I was drawn to the reflections and lights in the rain, but didn’t fully understand how to control exposure or frame dynamic subjects. The blur was accidental, yet it ended up being the most interesting part. This photo taught me that mistakes can be expressive." },
+      { src: gold, caption: "tbd" },
+      { src: moving, caption: "I didn’t plan for the motion blur, but the bus was just moving too fast. In hindsight, this happy accident made the image feel alive. At the time, I didn’t know how to control shutter speed, but this shot pushed me to learn more about movement in photography." },
+      { src: night, caption: "I captured the lights, but I didn’t think about what story I was telling. It’s sharp and technically okay, but emotionally flat. I was still figuring out that photography isn’t just about what you see, but how you frame it and why." },
+      { src: sky, caption: "One of my early attempts at cityscape photography. I was focused more on fitting landmarks into the frame rather than thinking about subject clarity or purpose. It’s visually balanced, but lacks a focal point or intent." },
+      { src: soho, caption: "One of my first photos ever, I just pointed my camera down the street without considering composition, lighting, or subject. It’s flat and cluttered, but it marks the start of learning how to observe urban space through a lens." }
     ]
   },
 
@@ -131,13 +131,13 @@ export const photoData = [
     year: "2025",
     location: "Toronto, ON",
     images: [
-      { src: bike, caption: "A lone bike framed by soft forest tones." },
-      { src: bikeman, caption: "A passerby blending into the natural world." },
-      { src: bridge, caption: "Leading lines guiding the viewer forward." },
-      { src: nature, caption: "Nature’s simplicity turned into quiet structure." },
-      { src: path, caption: "A winding trail pulling you inward." },
-      { src: plant, caption: "Light catching on delicate leaves." },
-      { src: redplant, caption: "A pop of colour interrupting the greens." }
+      { src: bike, caption: "I planned this shot to focus on shape and symmetry. The bike is placed centrally to balance the scene, and the dark tunnel draws attention forward. The vines above the bridge were used as a soft organic contrast to the harder man-made lines. I wanted this image to feel quiet but directional." },
+      { src: bikeman, caption: "This composition was built around narrative. The subject is placed in front of the overgrown bridge to create a sense of pause and reflection. I used color contrast between the green plants and the muted brown bridge to emphasize natural overgrowth in an urban setting. The framing was chosen to feel observational but also personal." },
+      { src: bridge, caption: "I used central framing and leading lines to draw the viewer’s eye toward the figure in the distance. The layers of foliage create a natural tunnel, while the symmetry of the bridge adds structure. I planned this photo to feel quiet and balanced, using compositional geometry found in nature." },
+      { src: nature, caption: "I chose this scene to explore complexity within clutter. The small yellow flowers are carefully framed within a chaotic background of overlapping branches. My goal was to show how intentional focus and subtle color variation could bring clarity to what might otherwise be visual noise." },
+      { src: path, caption: "I composed this photo with the goal of using framing and color harmony to guide movement. The overhanging branches create a visual canopy, while the trail below adds subtle curvature. I chose this time of day to emphasize the red and green contrast on the ground and overhead, creating a natural gradient of warmth and depth." },
+      { src: plant, caption: "This shot was an exercise in simplicity. I chose to isolate the bloom using shallow depth of field, allowing the textures and tones to become the focus. The contrast between the creamy whites and the green background was intentional, highlighting subtle differences in light temperature and surface detail." },
+      { src: redplant, caption: "This image was an intentional test of foreground isolation. I used aperture to pull the pink flowers into sharp focus and allow the green to become a backdrop. The colors were selected for their complementary relationship, creating a gentle yet vivid tension. My goal was to use focus and color to create visual softness." }
     ]
   },
 
@@ -149,13 +149,13 @@ export const photoData = [
     year: "2025",
     location: "Ottawa, ON",
     images: [
-      { src: bench, caption: "An empty bench hinting at paused movement." },
-      { src: gbridge, caption: "Lines and symmetry along a quiet bridge." },
-      { src: graffiti, caption: "Texture and colour bursting from a wall." },
-      { src: house, caption: "A small home resting in soft evening light." },
-      { src: man, caption: "A single figure adding scale to the scene." },
-      { src: road, caption: "A road cutting cleanly through the frame." },
-      { src: stop, caption: "A stop sign punctuating the composition." }
+      { src: bench, caption: "I framed this bench to practice central focus within a repeating urban setting. The spiral armrest became the subject, while the linear elements of the sidewalk and buildings provided depth. I chose a low angle to create visual compression and emphasize symmetry." },
+      { src: gbridge, caption: "I used the bridge supports as natural dividers to create strong vertical framing on either side. The symmetry between the graffiti-covered walls helped bring balance to an otherwise chaotic texture. This image was designed to contrast structural geometry with urban expression." },
+      { src: graffiti, caption: "I wanted to isolate the artwork above to emphasize scale and distortion. By pointing the lens upward and centering the image, I turned a ceiling into a canvas. The scene was composed to feel immersive and surreal while still grounded in physical space." },
+      { src: house, caption: "I photographed this building to experiment with form and modular rhythm. The curved and rectangular sections alternate, creating a visual pattern that I emphasized through straight-on framing. The red accent on the right side was left intentionally unbalanced to add subtle asymmetry." },
+      { src: man, caption: "This image was designed around contrast in posture and space. I placed the statue slightly off-center to maintain tension between the upright arms and the wide-open sky. The circular stone pattern beneath the figure was included to reinforce movement radiating from a still subject." },
+      { src: road, caption: "I composed this with intention to contrast the sharp blue signage against the soft, natural background. The upward tilt was used to elevate the sign in the frame and make it feel symbolic. This was a test of how street elements could act as visual anchors within a larger environment." },
+      { src: stop, caption: "This shot was planned to explore visual transparency and gridlines. The glass shelter intersects with lines from the sidewalk, street, and curb, creating layered planes of depth. I used a slight angle to break symmetry and maintain a feeling of openness and direction." }
     ]
   }
 ];

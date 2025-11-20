@@ -61,7 +61,7 @@ export const projectsData: {
     year: "2024-2025",
     location: "San Jose, CA",
     featured: true,
-    details: "test",
+    details: "The Bayside Mansion was a project that began in 10th grade during Art Class when we were told to create a meaningful art project. My passion for architecture, as well as my ",
     images: normalizeImages([
       drawing,
       line,
@@ -87,6 +87,7 @@ export const projectsData: {
     year: "2025",
     location: "Toronto, ON",
     featured: true,
+    details: "",
     images: normalizeImages([
       { url: change, type: "image" },
       { url: original, type: "image" },
