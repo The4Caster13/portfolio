@@ -49,6 +49,7 @@ export const projectsData: {
   construction?: boolean;
   images: MediaItem[];
   progressionStages: any[];
+  details?: string;
 }[] = [
 
   // grade 10 cpt 
@@ -60,7 +61,7 @@ export const projectsData: {
     year: "2024-2025",
     location: "San Jose, CA",
     featured: true,
-
+    details: "test",
     images: normalizeImages([
       drawing,
       line,
@@ -100,10 +101,11 @@ export const projectsData: {
     image: hero,
     title: "Tiny House",
     description:
-      "Expansive estate featuring contemporary architecture with panoramic views...",
+      "While drawings and sketches are great for brainstorming and idea generation, ultimately bringing your ideas into 3D helps to visualize the real end-product. My goal was to learn SketchUp and become proficient in using 3D modelling softwares to improve my technical skills and help bring my ideas to life.",
     year: "2025",
     location: "",
     featured: false,
+    details: "While drawings and sketches are great for brainstorming and idea generation, ultimately bringing your ideas into 3D helps to visualize the real end-product. My goal was to learn SketchUp and become proficient in using 3D modelling softwares to improve my technical skills and help bring my ideas to life.",
     images: normalizeImages([
       { url: hero, type: "image" },
       { url: first, type: "model" },

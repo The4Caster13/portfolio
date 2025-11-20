@@ -30,6 +30,7 @@ interface Project {
   featured: boolean;
   construction?: boolean;
   images?: MediaItem[];
+  details?: string;
   progressionStages?: ProgressionStage[];
 }
 
@@ -196,8 +197,7 @@ const ProjectDetail = () => {
                 Project Details
               </h3>
               <p className="text-charcoal/70">
-                This {project.title.toLowerCase()} project explores
-                form, function, and architectural intent.
+              {project.details}
               </p>
             </div>
           </div>
