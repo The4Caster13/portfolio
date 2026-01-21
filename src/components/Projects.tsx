@@ -161,13 +161,13 @@ export const projectsData: {
   {
     image:
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1770&auto=format&fit=crop",
-    title: "Industrial Loft",
+    title: "Pancake Model",
     description:
-      "Converted warehouse space combining exposed structural elements with modern finishes...",
-    year: "2021",
-    location: "Chicago, IL",
+      "Mathematically modelling the perfect pancake through experimentation and integration.",
+    year: "2025",
+    location: "North York, ON",
     featured: false,
-    construction: true,
+    construction: false,
 
     images: normalizeImages([
       "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=1770&auto=format&fit=crop",
