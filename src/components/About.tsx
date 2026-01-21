@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import villa from "../Assets/Assets/web_zuerich_corbusier_pavillon_1280x960_25340.jpg";
+import villa from "../Assets/web_zuerich_corbusier_pavillon_1280x960_25340.jpg";
 
 const About = () => {
   const sectionRef = useRef<HTMLDivElement>(null);

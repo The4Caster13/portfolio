@@ -1,5 +1,5 @@
 import React from "react";
-import cons from "../Assets/Assets/cons.jpg";
+import cons from "../Assets/cons.jpg";
 import type { Project } from "@/types/project";
 
 interface ConstructionProps {
