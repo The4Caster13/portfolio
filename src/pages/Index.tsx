@@ -7,9 +7,9 @@ import Philosophy from "@/components/Philosophy";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import ScrollReveal from "@/components/ScrollReveal";
-import Garden from "../Assets/Assets/smiskis/Garden_nc.jpg";
-import sign from "../Assets/Assets/night/sign.jpg";
-import bridge from "../Assets/Assets/nature/bridge.jpg";
+import garden from "../Assets/smiskis/Garden_nc.jpg";
+import sign from "../Assets/night/sign.jpg";
+import bridge from "../Assets/nature/bridge.jpg";
 
 import RevolvingGallery, { type GalleryPhoto } from "@/components/ui/gallery.tsx";
 
@@ -20,7 +20,7 @@ const Index = () => {
 
   const highlightPhotos: GalleryPhoto[] = [
     {
-      src: Garden,
+      src: garden,
       alt: "Garden",
       label: "Sour Patch Collection",
       caption: "The comfort of nature",

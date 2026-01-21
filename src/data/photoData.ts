@@ -1,55 +1,55 @@
 // smiskis
-import Garden from "../Assets/Assets/smiskis/Garden_nc.jpg";
-import Motherslove from "../Assets/Assets/smiskis/Motherlove.jpg";
-import Perseverance from "../Assets/Assets/smiskis/Perseverance.jpg";
-import Resolve from "../Assets/Assets/smiskis/Resolve.jpg";
-import Rest from "../Assets/Assets/smiskis/Rest.jpg";
-import Sadness from "../Assets/Assets/smiskis/Sadness.jpg";
-import UnendingLove from "../Assets/Assets/smiskis/Unending Love.jpg";
-import title from "../Assets/Assets/smiskis/Garden_nc.jpg";
+import garden from "../Assets/smiskis/Garden_nc.jpg";
+import motherslove from "../Assets/smiskis/Motherlove.jpg";
+import perseverance from "../Assets/smiskis/perseverance.jpg";
+import resolve from "../Assets/smiskis/resolve.jpg";
+import rest from "../Assets/smiskis/rest.jpg";
+import sadness from "../Assets/smiskis/sadness.jpg";
+import unendingLove from "../Assets/smiskis/UnendingLove.jpg";
+import title from "../Assets/smiskis/Garden_nc.jpg";
 
 // sourpatch
-import bag from "../Assets/Assets/sourpatch/bag.jpg";
-import bottle from "../Assets/Assets/sourpatch/bottle.jpg";
-import duo from "../Assets/Assets/sourpatch/duo.jpg";
-import edge from "../Assets/Assets/sourpatch/edge.jpg";
-import screen from "../Assets/Assets/sourpatch/screen.jpg";
-import solemn from "../Assets/Assets/sourpatch/solemn.jpg";
+import bag from "../Assets/sourpatch/bag.jpg";
+import bottle from "../Assets/sourpatch/bottle.jpg";
+import duo from "../Assets/sourpatch/duo.jpg";
+import edge from "../Assets/sourpatch/edge.jpg";
+import screen from "../Assets/sourpatch/screen.jpg";
+import solemn from "../Assets/sourpatch/solemn.jpg";
 
 // night
-import burger from "../Assets/Assets/night/burger.jpg";
-import car from "../Assets/Assets/night/car.jpg";
-import corvette from "../Assets/Assets/night/corvette.jpg";
-import markham from "../Assets/Assets/night/markham.jpg";
-import miata from "../Assets/Assets/night/miata.jpg";
-import sign from "../Assets/Assets/night/sign.jpg";
-import train from "../Assets/Assets/night/train.jpg";
+import burger from "../Assets/night/burger.jpg";
+import car from "../Assets/night/car.jpg";
+import corvette from "../Assets/night/corvette.jpg";
+import markham from "../Assets/night/markham.jpg";
+import miata from "../Assets/night/miata.jpg";
+import sign from "../Assets/night/sign.jpg";
+import train from "../Assets/night/train.jpg";
 
 // new york
-import blur from "../Assets/Assets/start/blur.jpg";
-import gold from "../Assets/Assets/start/gold.jpg";
-import moving from "../Assets/Assets/start/moving.jpg";
-import night from "../Assets/Assets/start/night.jpg";
-import sky from "../Assets/Assets/start/sky.jpg";
-import soho from "../Assets/Assets/start/soho.jpg";
+import blur from "../Assets/start/blur.jpg";
+import gold from "../Assets/start/gold.jpg";
+import moving from "../Assets/start/moving.jpg";
+import night from "../Assets/start/night.jpg";
+import sky from "../Assets/start/sky.jpg";
+import soho from "../Assets/start/soho.jpg";
 
 // nature
-import bike from "../Assets/Assets/nature/bike.jpg";
-import bikeman from "../Assets/Assets/nature/bikeman.jpg";
-import bridge from "../Assets/Assets/nature/bridge.jpg";
-import nature from "../Assets/Assets/nature/nature.jpg";
-import path from "../Assets/Assets/nature/path.jpg";
-import plant from "../Assets/Assets/nature/plant.jpg";
-import redplant from "../Assets/Assets/nature/redplant.jpg";
+import bike from "../Assets/nature/bike.jpg";
+import bikeman from "../Assets/nature/bikeman.jpg";
+import bridge from "../Assets/nature/bridge.jpg";
+import nature from "../Assets/nature/nature.jpg";
+import path from "../Assets/nature/path.jpg";
+import plant from "../Assets/nature/plant.jpg";
+import redplant from "../Assets/nature/redplant.jpg";
 
 // ottawa
-import bench from "../Assets/Assets/ottawa/bench.jpg";
-import gbridge from "../Assets/Assets/ottawa/gbridge.jpg";
-import graffiti from "../Assets/Assets/ottawa/graffiti.jpg";
-import house from "../Assets/Assets/ottawa/house.jpg";
-import man from "../Assets/Assets/ottawa/man.jpg";
-import road from "../Assets/Assets/ottawa/road.jpg";
-import stop from "../Assets/Assets/ottawa/stop.jpg";
+import bench from "../Assets/ottawa/bench.jpg";
+import gbridge from "../Assets/ottawa/gbridge.jpg";
+import graffiti from "../Assets/ottawa/graffiti.jpg";
+import house from "../Assets/ottawa/house.jpg";
+import man from "../Assets/ottawa/man.jpg";
+import road from "../Assets/ottawa/road.jpg";
+import stop from "../Assets/ottawa/stop.jpg";
 
 export const photoData = [
   //picture gallery (basically copy and paste)
@@ -61,12 +61,12 @@ export const photoData = [
     year: "2023",
     location: "North York, ON",
     images: [
-      { src: Garden, caption: "I imagined this as a moment of rest or recovery. By placing the figures in dense greenery, I wanted to suggest refuge or shelter. The soft shadows and slight tilt of the scene were meant to create a sense of safety but also vulnerability." },
-      { src: Motherslove, caption: "This scene was built to create a sudden, narrative tension. I positioned the figure near the foot to simulate a moment of danger. My goal was to play with motion and pause—creating a scene where the viewer could sense what might happen next." },
-      { src: Perseverance, caption: "This was my attempt to explore entrapment or inertia. I positioned the Smiski in a limp, upside-down pose against rigid lines to evoke stillness, maybe even resignation. The harshness of the wire contrasts with the softness of the figure to heighten discomfort." },
-      { src: Resolve, caption: "This setup was meant to feel strange and surreal. I placed the Smiski high in the branches to imply escape or detachment, letting the stark sky and tangled branches create tension. The visual imbalance mirrors the emotional ambiguity I wanted to convey." },
-      { src: Rest, caption: "I placed the figure in a leaf deliberately to suggest fear or concealment. The idea was to visually connect nature with shelter, while the contrast in scale between subject and environment added a sense of fragility. I kept the aperture low to emphasize depth." },
-      { src: Sadness, caption: "I intended this to feel like a lookout or moment of reflection. The rusted post and background curvature were chosen to echo solitude and distance. The posture of the figure adds a quiet melancholy that I tried to emphasize by isolating it in the frame." },
+      { src: garden, caption: "I imagined this as a moment of rest or recovery. By placing the figures in dense greenery, I wanted to suggest refuge or shelter. The soft shadows and slight tilt of the scene were meant to create a sense of safety but also vulnerability." },
+      { src: motherslove, caption: "This scene was built to create a sudden, narrative tension. I positioned the figure near the foot to simulate a moment of danger. My goal was to play with motion and pause—creating a scene where the viewer could sense what might happen next." },
+      { src: perseverance, caption: "This was my attempt to explore entrapment or inertia. I positioned the Smiski in a limp, upside-down pose against rigid lines to evoke stillness, maybe even resignation. The harshness of the wire contrasts with the softness of the figure to heighten discomfort." },
+      { src: resolve, caption: "This setup was meant to feel strange and surreal. I placed the Smiski high in the branches to imply escape or detachment, letting the stark sky and tangled branches create tension. The visual imbalance mirrors the emotional ambiguity I wanted to convey." },
+      { src: rest, caption: "I placed the figure in a leaf deliberately to suggest fear or concealment. The idea was to visually connect nature with shelter, while the contrast in scale between subject and environment added a sense of fragility. I kept the aperture low to emphasize depth." },
+      { src: sadness, caption: "I intended this to feel like a lookout or moment of reflection. The rusted post and background curvature were chosen to echo solitude and distance. The posture of the figure adds a quiet melancholy that I tried to emphasize by isolating it in the frame." },
       { src: UnendingLove, caption: "This image was composed to mimic a quiet moment of protection. The pose and setting were planned to resemble a parent holding a child above a ledge. My goal was to create a tender but slightly tense scene using minimal props and natural terrain." }
     ]
   },
