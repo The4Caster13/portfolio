@@ -5,7 +5,7 @@ import perseverance from "../Assets/smiskis/perseverance.jpg";
 import resolve from "../Assets/smiskis/resolve.jpg";
 import rest from "../Assets/smiskis/rest.jpg";
 import sadness from "../Assets/smiskis/sadness.jpg";
-import unendingLove from "../Assets/smiskis/UnendingLove.jpg";
+import unendinglove from "../Assets/smiskis/unendinglove.jpg";
 import title from "../Assets/smiskis/Garden_nc.jpg";
 
 // sourpatch
@@ -67,7 +67,7 @@ export const photoData = [
       { src: resolve, caption: "This setup was meant to feel strange and surreal. I placed the Smiski high in the branches to imply escape or detachment, letting the stark sky and tangled branches create tension. The visual imbalance mirrors the emotional ambiguity I wanted to convey." },
       { src: rest, caption: "I placed the figure in a leaf deliberately to suggest fear or concealment. The idea was to visually connect nature with shelter, while the contrast in scale between subject and environment added a sense of fragility. I kept the aperture low to emphasize depth." },
       { src: sadness, caption: "I intended this to feel like a lookout or moment of reflection. The rusted post and background curvature were chosen to echo solitude and distance. The posture of the figure adds a quiet melancholy that I tried to emphasize by isolating it in the frame." },
-      { src: UnendingLove, caption: "This image was composed to mimic a quiet moment of protection. The pose and setting were planned to resemble a parent holding a child above a ledge. My goal was to create a tender but slightly tense scene using minimal props and natural terrain." }
+      { src: unendinglove, caption: "This image was composed to mimic a quiet moment of protection. The pose and setting were planned to resemble a parent holding a child above a ledge. My goal was to create a tender but slightly tense scene using minimal props and natural terrain." }
     ]
   },
 
